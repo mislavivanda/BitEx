@@ -1,42 +1,63 @@
-import styles from "./header.module.css";
+import { useState, useEffect } from "react";
+import { Navigation, Button } from "../../components";
+import Image from "next/image";
+import LogoImage from "../../assets/logo.png";
 
 const Header = () => {
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
   return (
-    <section className={styles.headerContainer}>
-      <div className={styles.leftContainer}>
-        <div className={styles.logoContainer}>LOGO DIO</div>
-        <div className={styles.navbar}>
-          {["Crypto offer", "Trade", "Blog"].map((item, index) =>
-            index < 2 ? (
-              <div key={item} className={styles.navItem}>
-                {item}
-              </div>
-            ) : (
-              <div
-                key={item}
-                className={`${styles.navItem} ${styles.lastItem}`}
-              >
-                {item}
-              </div>
-            )
-          )}
-        </div>
+    <header className="fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
+      <div className="flex items-center z-20">
+        <Image
+          src={LogoImage}
+          height={40}
+          width={40}
+          layout="fixed"
+          alt="BitEx logo"
+        />
+        <span className="pl-1 text-primary-color text-2xl">BitEx</span>
       </div>
-      <div className={styles.loginRegisterContainer}>
-        {["Login", "Register"].map((item, index) => (
-          <div
-            className={styles.item}
-            style={{
-              marginRight: index === 0 ? "1rem" : 0,
-              marginLeft: index === 1 ? "1rem" : 0,
-            }}
-            key={item}
-          >
-            {item}
-          </div>
-        ))}
+      <Navigation isOpen={isBurgerOpen} />
+      <div className="hidden sm:flex items-center justify-end flex-grow">
+        <Button
+          onClick={(e) => console.log("clicked1")}
+          type="classic"
+          style={{ marginRight: "1rem" }}
+        >
+          Login
+        </Button>
+        <Button onClick={(e) => console.log("clicked2")} type="filled">
+          Register
+        </Button>
       </div>
-    </section>
+      {/*hamburger bar sa 3 komponente */}
+      <div
+        className="sm:hidden flex flex-col items-center justify-evenly h-10 w-10 z-20 bg-white hover:cursor-pointer"
+        onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+      >
+        <div
+          id="burger-top"
+          className={`w-8 h-1 rounded-md bg-primary-color transition-all duration-500 ease-in-out ${
+            isBurgerOpen ? "transform rotate-45  translate-y-[0.6875rem]" : ""
+          }`}
+        />
+        <div
+          id="burger-middle"
+          className={`w-8 h-1 rounded-md bg-primary-color transition-all duration-500 ease-in-out ${
+            isBurgerOpen ? "transform translate-x-10 bg-transparent" : ""
+          }`}
+        />
+        <div
+          id="burger-bottom"
+          className={`w-8 h-1 rounded-md bg-primary-color transition-all duration-500 ease-in-out ${
+            isBurgerOpen
+              ? "transform -rotate-45 -translate-y-[0.6875rem]  "
+              : ""
+          }`}
+        />
+      </div>
+    </header>
   );
 };
 

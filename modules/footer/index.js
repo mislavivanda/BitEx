@@ -1,25 +1,24 @@
 import React from "react";
-import styles from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <section className={styles.footerContainer}>
-      <div className={styles.aboutContactContainer}>
+    <footer className="w-full absolute bottom-0 flex justify-center sm:justify-between items-center flex-wrap bg-primary-color min-h-50 py-0 px-12 text-base text-white">
+      <div className="flex items-center">
         {["About Us", "Contact"].map((item, index) =>
           index < 1 ? (
             <React.Fragment key={item}>
-              <div className={styles.footerItem}>{item}</div>
-              <div className={styles.dotSeparator}></div>
+              <div className="p-2 text-center">{item}</div>
+              <div className="after:content-['•']"></div>
             </React.Fragment>
           ) : (
-            <div key={item} className={styles.footerItem}>
+            <div key={item} className="p-2 text-center">
               {item}
             </div>
           )
         )}
       </div>
-      <div className={styles.footerItem}>BitEx 2021. All rights reserved.</div>
-    </section>
+      <div className="p-2 text-center">@BitEx 2021. All rights reserved.</div>
+    </footer>
   );
 };
 

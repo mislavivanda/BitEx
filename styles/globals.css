@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  --primary-color: #642dfd;
-  --font-color: #141414;
-  font-family: Montserrat;
+  font-family: Roboto;
 }
 
 a {
