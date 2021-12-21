@@ -11,11 +11,11 @@ const Navigation = ({ isOpen }) => {
         {["Crypto offer", "Trade", "Blog"].map((item, index) => (
           <li
             key={index}
-            className={`py-1 px-3 rounded-3xl ${
+            className={`py-1 px-3 ${
               clickedNavItem === index
-                ? "bg-primary-color text-white"
-                : "text-font-color-dark"
-            } hover:bg-primary-color cursor-pointer`}
+                ? "border-b-primary-color border-b-[3px] border-solid"
+                : "border-none"
+            } hover:cursor-pointer`}
             onClick={(e) =>
               clickedNavItem !== index && setClickedNavItem(index)
             }
@@ -30,11 +30,11 @@ const Navigation = ({ isOpen }) => {
           !isOpen ? "translate-x-full" : "translate-x-0"
         } mb-2 sm:hidden flex flex-col items-center justify-center fixed top-0 right-0 w-screen h-screen transition-transform duration-500 ease-in-out bg-white z-10`}
       >
-        <div className="flex items-center">
+        <div className="px-1 mb-2 flex items-center">
           <Button
             onClick={(e) => console.log("clicked2")}
             type="filled"
-            style={{ marginRight: "2rem" }}
+            classes="mr-[2rem]"
           >
             Register
           </Button>
@@ -49,7 +49,7 @@ const Navigation = ({ isOpen }) => {
               clickedNavItem === index
                 ? "bg-primary-color text-white"
                 : "text-font-color-dark"
-            } hover:bg-primary-color cursor-pointer`}
+            } hover:bg-primary-color cursor-pointer hover:text-white`}
             onClick={(e) =>
               clickedNavItem !== index && setClickedNavItem(index)
             }

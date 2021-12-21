@@ -1,13 +1,12 @@
-const Button = ({ type, onClick, style = {}, children }) => {
+const Button = ({ type, onClick, classes = {}, children }) => {
   return (
     <button
       className={`py-1 px-3 rounded-3xl ${
         type === "filled"
           ? "text-white bg-primary-color"
           : "text-font-color-dark bg-button-classic"
-      } hover:cursor-pointer`}
+      } hover:cursor-pointer ${classes}`}
       onClick={onClick}
-      style={style}
     >
       {children}
     </button>

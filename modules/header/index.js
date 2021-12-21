@@ -7,7 +7,7 @@ const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   return (
-    <header className="fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
+    <header className="shadow-2xl fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
       <div className="flex items-center z-20">
         <Image
           src={LogoImage}
@@ -21,14 +21,14 @@ const Header = () => {
       <Navigation isOpen={isBurgerOpen} />
       <div className="hidden sm:flex items-center justify-end flex-grow">
         <Button
-          onClick={(e) => console.log("clicked1")}
-          type="classic"
-          style={{ marginRight: "1rem" }}
+          onClick={(e) => console.log("clicked2")}
+          type="filled"
+          classes="mr-[1rem]"
         >
-          Login
-        </Button>
-        <Button onClick={(e) => console.log("clicked2")} type="filled">
           Register
+        </Button>
+        <Button onClick={(e) => console.log("clicked1")} type="classic">
+          Login
         </Button>
       </div>
       {/*hamburger bar sa 3 komponente */}

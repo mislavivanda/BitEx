@@ -5,7 +5,7 @@ import HomeImage from "../assets/home_image.png";
 import LineChart from "../assets/line_chart_up.png";
 import BarChart from "../assets/bar_chart.png";
 import CreditCard from "../assets/credit_card.png";
-import { Button } from "../components";
+import { Button, BlogsSection } from "../components";
 import BinanceCoin from "../assets/binance_coin_logo.png";
 import BTCCoin from "../assets/BTC_logo.png";
 import DogeCoin from "../assets/doge_logo.png";
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen">
       <Header />
-      <main className="p-5 mt-16 text-font-color-dark">
+      <main className="pt-5 pb-20 sm:pb-15 px-5 sm:px-10 md:px-12 lg:px-14 mt-16 text-font-color-dark">
         <section className="flex flex-wrap items-center justify-evenly w-full ">
           <div
             className="flex-grow relative w-full h-[300px] max-w-lg"
@@ -41,7 +41,7 @@ const Home = () => {
             <Button
               type="filled"
               onClick={() => console.log("get started clicked")}
-              style={{ marginTop: "0.5rem" }}
+              classes="mt-[0.5rem]"
             >
               Get started
             </Button>
@@ -93,7 +93,7 @@ const Home = () => {
         </section>
         <section className="w-full mt-10 py-5 text-center">
           <h1 className="text-5xl font-extrabold">Most traded crypto</h1>
-          <div className="flex mt-5 mb-10 overflow-x-auto items-center sm:justify-evenly">
+          <div className="flex mt-5 overflow-x-auto items-center sm:justify-evenly">
             {[ETHCoin, SolanaCoin, BTCCoin, DogeCoin, BinanceCoin].map(
               (element, index) => (
                 <div
@@ -113,6 +113,7 @@ const Home = () => {
             )}
           </div>
         </section>
+        <BlogsSection type="homepage" />
       </main>
       <Footer />
     </div>
