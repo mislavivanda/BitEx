@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="w-full absolute bottom-0 flex justify-center sm:justify-between items-center flex-wrap bg-primary-color min-h-50 py-0 px-12 text-base text-white">
+    <footer className="w-full absolute bottom-0 flex justify-center sm:justify-between items-center flex-wrap bg-primary-color py-0 px-12 text-base text-white">
       <div className="flex items-center">
         {["About Us", "Contact"].map((item, index) =>
           index < 1 ? (
