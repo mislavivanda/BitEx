@@ -11,6 +11,17 @@ module.exports = {
         "roboto-condensed": ['"Roboto Condensed"', "sans-serif"],
       },
 
+      keyframes: {
+        fade: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+      },
+
+      animation: {
+        fade: "fade 0.5s ease-in-out",
+      },
+
       colors: {
         "primary-color": {
           //light: '#642dfd',
