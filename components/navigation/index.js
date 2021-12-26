@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../../components";
-import Dropdown from "../../modules/header/Dropdown";
+import Dropdown from "../../modules/header/dropdown";
 
 const Navigation = ({ isOpen, isUserLoggedIn }) => {
   const [clickedNavItem, setClickedNavItem] = useState(0);

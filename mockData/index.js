@@ -2,6 +2,12 @@ import ArticlePicture from "../assets/mock_article.png";
 import BitcoinLogo from "../assets/BTC_logo.png";
 import ETHLogo from "../assets/ETH_logo.png";
 
+import BinanceCoin from "../assets/binance_coin_logo.png";
+import BTCCoin from "../assets/BTC_logo.png";
+import DogeCoin from "../assets/doge_logo.png";
+import ETHCoin from "../assets/ETH_logo.png";
+import SolanaCoin from "../assets/solana_logo.png";
+
 const mockArticles = [
   {
     picture: ArticlePicture,
@@ -226,4 +232,43 @@ const mockAnalyticsData = {
   },
 };
 
-export { mockArticles, mockDashboardData, mockTradesData, mockAnalyticsData };
+const mockCryptoOffer = [
+  {
+    icon: BTCCoin,
+    name: "Bitcoin",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.",
+  },
+  {
+    icon: ETHCoin,
+    name: "Ethereum",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.",
+  },
+  {
+    icon: BinanceCoin,
+    name: "Binance",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.",
+  },
+  {
+    icon: DogeCoin,
+    name: "Dogecoin",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.",
+  },
+  {
+    icon: SolanaCoin,
+    name: "Solana",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.",
+  },
+];
+
+export {
+  mockArticles,
+  mockDashboardData,
+  mockTradesData,
+  mockAnalyticsData,
+  mockCryptoOffer,
+};

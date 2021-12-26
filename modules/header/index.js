@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigation, Button } from "../../components";
-import Dropdown from "./Dropdown";
+import Dropdown from "./dropdown";
 import Image from "next/image";
 import LogoImage from "../../assets/logo.png";
 
