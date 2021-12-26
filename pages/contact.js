@@ -16,7 +16,7 @@ const Contact = () => {
             Contact
           </h1>
           <section className="mt-10 flex flex-wrap items-center justify-evenly">
-            <div class="text-center w-full max-w-2xl ">
+            <div className="text-center w-full max-w-2xl ">
               <table className="w-full border-separate">
                 <tr>
                   <td className="pb-10">

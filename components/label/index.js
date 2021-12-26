@@ -2,8 +2,8 @@ const Label = ({ forName, children, classes }) => {
   return (
     <>
       <label
-        class={`block text-gray-700 text-sm font-bold mb-2 ${classes}`}
-        for={forName}
+        className={`block text-gray-700 text-sm font-bold mb-2 ${classes}`}
+        htmlFor={forName}
       >
         {children}
       </label>

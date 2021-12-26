@@ -80,9 +80,9 @@ const Trade = () => {
                 &times;
               </span>
               <Label classes="text-base">Select payment type</Label>
-              <div class="pt-2 flex justify-center text-gray-600">
+              <div className="pt-2 flex justify-center text-gray-600">
                 <input
-                  class="w-[300px] border-2 border-gray-200 bg-white h-10 px-5 rounded-3xl text-sm focus:outline-none"
+                  className="w-[300px] border-2 border-gray-200 bg-white h-10 px-5 rounded-3xl text-sm focus:outline-none"
                   type="search"
                   name="search"
                   placeholder="Search"
@@ -117,8 +117,8 @@ const Trade = () => {
             Trade
           </h1>
           <section className="mt-10 flex flex-wrap items-center justify-evenly">
-            <div class="mt-10 w-full max-w-2xl">
-              <div class="flex justify-between content-center">
+            <div className="mt-10 w-full max-w-2xl">
+              <div className="flex justify-between content-center">
                 <table className="w-full border-separate">
                   <tr>
                     <th>

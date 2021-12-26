@@ -16,13 +16,13 @@ const Login = () => {
             Login
           </h1>
           <section className="mt-10 flex flex-wrap items-center justify-evenly">
-            <div class="w-full max-w-xs">
-              <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
-                <div class="mb-4">
+            <div className="w-full max-w-xs">
+              <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                <div className="mb-4">
                   <Label forName="e-mail">E-mail</Label>
                   <InputField id="email" type="text" placeholder="E-mail" />
                 </div>
-                <div class="mb-6">
+                <div className="mb-6">
                   <Label forName="password">Password</Label>
                   <InputField
                     id="password"
@@ -30,22 +30,22 @@ const Login = () => {
                     placeholder="******************"
                   />
                 </div>
-                <div class="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <Button type="filled" onClick={onLogin}>
                     Log in
                   </Button>
                   <a
-                    class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                     href="#"
                   >
                     Forgot Password?
                   </a>
                 </div>
-                <div class="mt-6">
+                <div className="mt-6">
                   Don't have an account?
                   <div>
                     <a
-                      class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                      className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                       href="#"
                     >
                       Register now!
