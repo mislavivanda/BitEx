@@ -9,7 +9,7 @@ const Header = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
 
   return (
-    <header className="shadow-2xl fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
+    <header className="border-b-2 border-primary-color fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
       <div className="relative flex items-center z-20">
         <Image
           src={LogoImage}

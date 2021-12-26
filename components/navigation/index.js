@@ -13,9 +13,7 @@ const Navigation = ({ isOpen, isUserLoggedIn }) => {
           <li
             key={index}
             className={`py-1 px-3 ${
-              clickedNavItem === index
-                ? "border-b-primary-color border-b-[3px] border-solid text-primary-color"
-                : "border-none"
+              clickedNavItem === index ? "text-primary-color" : "border-none"
             } hover:cursor-pointer`}
             onClick={(e) =>
               clickedNavItem !== index && setClickedNavItem(index)
