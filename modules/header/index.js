@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigation, Button } from "../../components";
+import { Navigation, Button, Avatar } from "../../components";
 import Dropdown from "./dropdown";
 import Image from "next/image";
 import LogoImage from "../../assets/logo.png";
@@ -24,15 +24,7 @@ const Header = () => {
       <div className="hidden sm:flex items-center justify-end flex-grow">
         {isUserLoggedIn ? (
           <>
-            <span className="my-2 py-1 px-3 text-primary-color">
-              {" "}
-              Matej Dražić(50$)
-            </span>
-            <div className="relative rounded-[50%] bg-primary-color h-[40px] w-[40px]">
-              <span className="absolute text-white text-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-                M
-              </span>
-            </div>
+            <Avatar textContent="Matej Dražić($500)" firstLetter="M" />
             <Dropdown />
           </>
         ) : (
