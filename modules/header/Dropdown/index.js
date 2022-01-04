@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Dropdown = () => {
   const [isOpened, setIsOpened] = useState(false);
 
+  const router = useRouter();
   return (
     <>
       <div
@@ -26,7 +28,7 @@ const Dropdown = () => {
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
         <ul
-          className={`py-1 absolute list-none top-[24px] right-0 top-[calc(100%+1rem)] bg-white shadow-md rounded-md z-30
+          className={`py-1 absolute list-none right-0 top-[calc(100%+1rem)] bg-white shadow-md rounded-md z-30
                     ${
                       isOpened ? "opacity-1" : "opacity-0"
                     } transition-opacity duration-500 ease-in-out
@@ -48,7 +50,15 @@ const Dropdown = () => {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span className="text-primary-color">Account</span>
+            <span
+              className="text-primary-color"
+              onClick={() => {
+                setIsOpened(false);
+                router.push("/account");
+              }}
+            >
+              Account
+            </span>
           </li>
           <li className="flex items-center hover:cursor-pointer py-2 px-6">
             <svg
@@ -67,7 +77,15 @@ const Dropdown = () => {
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
             </svg>
-            <span className="text-primary-color">Logout</span>
+            <span
+              className="text-primary-color"
+              onClick={() => {
+                setIsOpened(false);
+                router.push("/login");
+              }}
+            >
+              Logout
+            </span>
           </li>
         </ul>
       </div>

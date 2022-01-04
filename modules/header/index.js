@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { Navigation, Button, Avatar } from "../../components";
 import Dropdown from "./dropdown";
 import Image from "next/image";
@@ -7,10 +8,14 @@ import LogoImage from "../../assets/logo.png";
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const router = useRouter();
 
   return (
     <header className="border-b-2 border-primary-color fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
-      <div className="relative flex items-center z-20">
+      <div
+        className="relative flex items-center z-20 hover:cursor-pointer"
+        onClick={() => router.push("/")}
+      >
         <Image
           src={LogoImage}
           height={40}
@@ -20,7 +25,11 @@ const Header = () => {
         />
         <span className="pl-1 text-primary-color text-2xl">BitEx</span>
       </div>
-      <Navigation isOpen={isBurgerOpen} isUserLoggedIn={isUserLoggedIn} />
+      <Navigation
+        isOpen={isBurgerOpen}
+        setIsBurgerOpen={setIsBurgerOpen}
+        isUserLoggedIn={isUserLoggedIn}
+      />
       <div className="hidden sm:flex items-center justify-end flex-grow">
         {isUserLoggedIn ? (
           <>
@@ -30,13 +39,13 @@ const Header = () => {
         ) : (
           <>
             <Button
-              onClick={(e) => console.log("clicked2")}
+              onClick={() => router.push("/register")}
               type="filled"
               classes="mr-[1rem]"
             >
               Register
             </Button>
-            <Button onClick={(e) => console.log("clicked1")} type="classic">
+            <Button onClick={() => router.push("/login")} type="classic">
               Login
             </Button>
           </>
