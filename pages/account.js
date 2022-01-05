@@ -5,6 +5,7 @@ import {
   mockAnalyticsData,
   mockCreditCards,
 } from "../mockData";
+import { Button } from "../components";
 import UserIcon from "../assets/user_icon.png";
 import Image from "next/image";
 
@@ -13,8 +14,8 @@ const Account = () => {
 
   return (
     <>
-      <section className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-        <div>
+      <section className="flex flex-col">
+        <div className="flex flex-col items-center">
           <div className="flex items-center">
             <div className="relative w-[60px] h-[60px] rounded-[50%]">
               <Image layout="fill" alt="profile picture" src={UserIcon} />
@@ -28,30 +29,58 @@ const Account = () => {
               </h4>
             </div>
           </div>
-          <h2 className="inline-block border-b-primary-color border-b-[3px] border-solid mt-10 text-lg font-extrabold text-font-color-dark">
-            Registered credit cards:
-          </h2>
-          <div className="mt-10 flex flex-col items-start">
-            {mockCreditCards.map((card, index) => (
-              <div
-                key={index}
-                className="mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
-              >
-                <div className="relative w-[60px] h-[40px]">
-                  <Image
-                    layout="fill"
-                    alt="credit card provider logo"
-                    src={card.image}
-                  />
+          <div />
+          <div className="inline-flex flex-col ">
+            <div className="inline-flex">
+              <h2 className="mb-6 inline-block border-b-primary-color border-b-[3px] border-solid mt-10 text-lg font-extrabold text-font-color-dark">
+                Registered credit cards:
+              </h2>
+            </div>
+            <div className="inline-flex flex-col items-center">
+              {mockCreditCards.map((card, index) => (
+                <div
+                  key={index}
+                  className="mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                >
+                  <div className="relative w-[60px] h-[40px]">
+                    <Image
+                      layout="fill"
+                      alt="credit card provider logo"
+                      src={card.image}
+                    />
+                  </div>
+                  <div className="ml-2 flex-grow text-center text-md font-extrabold text-font-color-dark">
+                    {card.number}
+                  </div>
                 </div>
-                <div className="ml-2 text-md font-extrabold text-font-color-dark">
-                  {card.number}
+              ))}
+              <Button type="filled" classes="mt-2">
+                <div className="flex items-center">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 16 16"
+                    style={{ width: 20, height: 20 }}
+                  >
+                    <g>
+                      <path
+                        fill="#ffffff"
+                        d="M8,0C3.589,0,0,3.589,0,8s3.589,8,8,8s8-3.589,8-8S12.411,0,8,0z M8,14c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6
+                        S11.309,14,8,14z"
+                      />
+                      <polygon
+                        fill="#ffffff"
+                        points="9,4 7,4 7,7 4,7 4,9 7,9 7,12 9,12 9,9 12,9 12,7 9,7 		"
+                      />
+                    </g>
+                  </svg>
+                  <span className="ml-1">Add card</span>
                 </div>
-              </div>
-            ))}
+              </Button>
+            </div>
           </div>
         </div>
-        <div className="w-full mt-16 flex flex-col justify-center lg:flex-grow lg:ml-10">
+        <div className="w-full mt-16 flex flex-col justify-center">
           <div className="flex items-center">
             {["Dashboard", "Trades", "Analytics"].map((item, index) => (
               <div

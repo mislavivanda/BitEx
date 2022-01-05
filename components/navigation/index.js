@@ -30,7 +30,7 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
       </nav>
       {/*burger menu -> ukljucen na <= sm + mora bit isopen true */}
       <section
-        className={`transform ${
+        className={`${
           !isOpen ? "translate-x-full" : "translate-x-0"
         } mb-2 sm:hidden flex flex-col items-center justify-center fixed top-0 right-0 w-screen h-screen transition-transform duration-500 ease-in-out bg-white z-30`}
       >
