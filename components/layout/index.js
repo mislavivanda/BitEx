@@ -3,10 +3,8 @@ import Footer from "../../modules/footer";
 import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
-  console.log("Laxout rendered");
   const router = useRouter();
 
-  console.log(router.pathname.split("/")[1]);
   return (
     <div className="flex flex-col min-h-full">
       {router.pathname.split("/")[1] !== "login" &&

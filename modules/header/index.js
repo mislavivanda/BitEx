@@ -23,7 +23,7 @@ const Header = () => {
           layout="fixed"
           alt="BitEx logo"
         />
-        <span className="pl-1 text-primary-color text-2xl">BitEx</span>
+        <span className="ml-1 text-primary-color text-2xl">BitEx</span>
       </div>
       <Navigation
         isOpen={isBurgerOpen}
