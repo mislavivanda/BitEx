@@ -11,7 +11,7 @@ const CryptoCoinInfo = () => {
     <>
       <section className="mt-16">
         <article className="hidden sm:flex max-w-screen-lg mx-auto">
-          <div className="relative mr-5">
+          <div className="mr-5">
             <Image src={BinanceCoin} layout="fixed" height={100} width={100} />
           </div>
           <div className="flex flex-col justify-center">
@@ -45,7 +45,7 @@ const CryptoCoinInfo = () => {
           </div>
         </article>
         <article className="sm:hidden flex flex-col items-center">
-          <div className="relative">
+          <div>
             <Image src={BinanceCoin} layout="fixed" height={100} width={100} />
           </div>
           <h1 className="mt-4 text-4xl text-font-color-dark font-bold">

@@ -96,6 +96,7 @@ const Trade = () => {
             ].map((element, index) => {
               return (
                 <Image
+                  key={index}
                   src={element}
                   width={100}
                   height={100}
@@ -115,40 +116,44 @@ const Trade = () => {
         <div className="mt-10 w-full max-w-2xl">
           <div className="flex justify-between content-center">
             <table className="w-full border-separate">
-              <tr>
-                <th>
-                  <Label classes="text-base" forName="payment">
-                    Select payment method
-                  </Label>
-                </th>
-                <th>
-                  <Label classes="text-base" forName="payment">
-                    Select cryptocurrency
-                  </Label>
-                </th>
-              </tr>
-              <tr>
-                <td className="text-center">
-                  <Image
-                    onClick={paymentModal}
-                    src={BTCLogo}
-                    width={100}
-                    height={100}
-                    layout="fixed"
-                    alt="Asset icon"
-                  />
-                </td>
-                <td className="text-center">
-                  <Image
-                    onClick={cryptoModal}
-                    src={BTCLogo}
-                    width={100}
-                    height={100}
-                    layout="fixed"
-                    alt="Asset icon"
-                  />
-                </td>
-              </tr>
+              <thead>
+                <tr>
+                  <th>
+                    <Label classes="text-base" forName="payment">
+                      Select payment method
+                    </Label>
+                  </th>
+                  <th>
+                    <Label classes="text-base" forName="payment">
+                      Select cryptocurrency
+                    </Label>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-center">
+                    <Image
+                      onClick={paymentModal}
+                      src={BTCLogo}
+                      width={100}
+                      height={100}
+                      layout="fixed"
+                      alt="Asset icon"
+                    />
+                  </td>
+                  <td className="text-center">
+                    <Image
+                      onClick={cryptoModal}
+                      src={BTCLogo}
+                      width={100}
+                      height={100}
+                      layout="fixed"
+                      alt="Asset icon"
+                    />
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className="text-center">

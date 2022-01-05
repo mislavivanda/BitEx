@@ -15,10 +15,11 @@ const Blog = () => {
           <h1 className="my-5 text-5xl text-font-color font-extrabold ">
             Lorem ipsum naslov bloga u dva red ili cak tri lorem
           </h1>
-          <div className="flex items-center justify-between">
+          <hr className="w-[200px] border-b-primary-color border-b-[2px] border-solid" />
+          <div className="flex items-center flex-wrap">
             <Avatar reverse={true} firstLetter="A" textContent="Ante Tomić" />
-            <div className="flex items-center">
-              <div className="p-2 m-2 rounded-[50%] relative flex items-center justify-center bg-font-color-light hover:cursor-pointer">
+            <div className="flex items-center justify-end flex-grow">
+              <div className="p-2 m-2 rounded-[50%] w-[50px] h-[50px] flex items-center justify-center bg-font-color-light hover:cursor-pointer">
                 <Image
                   src={whatsAppIcon}
                   layout="fixed"
@@ -27,7 +28,7 @@ const Blog = () => {
                   alt="Whatsapp icon"
                 />
               </div>
-              <div className="p-2 m-2 rounded-[50%] relative flex items-center justify-center bg-font-color-light hover:cursor-pointer">
+              <div className="p-2 m-2 rounded-[50%] w-[50px] h-[50px] flex items-center justify-center bg-font-color-light hover:cursor-pointer">
                 <Image
                   src={gmailIcon}
                   layout="fixed"
@@ -36,7 +37,7 @@ const Blog = () => {
                   alt="Gmail icon"
                 />
               </div>
-              <div className="p-2 m-2 rounded-[50%] relative flex items-center justify-center bg-font-color-light hover:cursor-pointer">
+              <div className="p-2 m-2 rounded-[50%] w-[50px] h-[50px] flex items-center justify-center bg-font-color-light hover:cursor-pointer">
                 <Image
                   src={viberIcon}
                   layout="fixed"
@@ -47,12 +48,15 @@ const Blog = () => {
               </div>
             </div>
           </div>
+          <div className="mt-[5px] flex justify-end">
+            <hr className="w-[200px] border-b-primary-color border-b-[2px] border-solid" />
+          </div>
           <section id="article_body" className="mt-10 text-lg">
-            <div className={`relative h-96`}>
+            <div className={`mx-auto w-full max-w-screen-lg`}>
               <Image
                 src={mockArticleImage}
-                layout="fill"
-                objectFit="contain"
+                layout="responsive"
+                objectFit="cover"
                 alt="Article cover image"
               />
             </div>

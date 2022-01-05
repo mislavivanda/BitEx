@@ -11,9 +11,9 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <header className="border-b-2 border-primary-color fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white">
+    <header className="flex-shrink-0 border-b-2 border-primary-color fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white z-40">
       <div
-        className="relative flex items-center z-20 hover:cursor-pointer"
+        className="flex items-center hover:cursor-pointer z-40"
         onClick={() => router.push("/")}
       >
         <Image
@@ -33,7 +33,7 @@ const Header = () => {
       <div className="hidden sm:flex items-center justify-end flex-grow">
         {isUserLoggedIn ? (
           <>
-            <Avatar textContent="Matej Dražić($500)" firstLetter="M" />
+            <Avatar textContent="($500)" firstLetter="M" />
             <Dropdown />
           </>
         ) : (
@@ -53,7 +53,7 @@ const Header = () => {
       </div>
       {/*hamburger bar sa 3 komponente */}
       <div
-        className="sm:hidden flex flex-col items-center justify-evenly h-10 w-10 z-20 bg-white hover:cursor-pointer"
+        className="sm:hidden lg:hidden flex flex-col items-center justify-evenly h-10 w-10 bg-white hover:cursor-pointer z-40"
         onClick={() => setIsBurgerOpen(!isBurgerOpen)}
       >
         <div

@@ -7,7 +7,7 @@ const CryptoCard = ({ icon, title, description }) => {
 
   return (
     <div className="flex h-full">
-      <div className="relative mr-5">
+      <div className="mr-5">
         <Image src={icon} layout="fixed" height={80} width={80} />
       </div>
       <div className="flex flex-col justify-center">

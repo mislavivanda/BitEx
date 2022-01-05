@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full absolute bottom-0 flex justify-center sm:justify-between items-center flex-wrap bg-primary-color py-0 px-12 text-base text-white text-lg">
+    <footer className="w-full flex-shrink-0 flex justify-center sm:justify-between items-center flex-wrap bg-primary-color py-0 px-12 text-base text-white text-lg">
       <div className="flex items-center">
         {["About Us", "Contact"].map((item, index) =>
           index < 1 ? (

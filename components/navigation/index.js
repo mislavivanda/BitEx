@@ -5,7 +5,7 @@ import Dropdown from "../../modules/header/dropdown";
 import Link from "next/link";
 
 const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
-  const [clickedNavItem, setClickedNavItem] = useState(0);
+  const [clickedNavItem, setClickedNavItem] = useState(null);
 
   const router = useRouter();
 
@@ -32,9 +32,9 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
       <section
         className={`transform ${
           !isOpen ? "translate-x-full" : "translate-x-0"
-        } mb-2 sm:hidden flex flex-col items-center justify-center fixed top-0 right-0 w-screen h-screen transition-transform duration-500 ease-in-out bg-white z-10`}
+        } mb-2 sm:hidden flex flex-col items-center justify-center fixed top-0 right-0 w-screen h-screen transition-transform duration-500 ease-in-out bg-white z-30`}
       >
-        {isUserLoggedIn ? (
+        {!isUserLoggedIn ? (
           <div className="mb-2 flex items-center">
             <Button
               onClick={() => {
@@ -71,19 +71,23 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
           </div>
         )}
         {["Crypto offer", "Trade", "Blog"].map((item, index) => (
-          <div
-            key={index}
-            className={`my-2 py-1 px-3 ${
-              clickedNavItem === index
-                ? "bg-primary-color text-white"
-                : "text-font-color-dark"
-            } hover:bg-primary-color cursor-pointer hover:text-white`}
-            onClick={(e) =>
-              clickedNavItem !== index && setClickedNavItem(index)
-            }
-          >
-            {item}
-          </div>
+          <Link key={index} href={`/${item.replace(/\s/g, "").toLowerCase()}`}>
+            <div
+              key={index}
+              className={`my-2 py-1 px-3 ${
+                clickedNavItem === index
+                  ? "bg-primary-color text-white"
+                  : "text-font-color-dark"
+              } hover:bg-primary-color cursor-pointer hover:text-white`}
+              onClick={() => {
+                clickedNavItem !== index && setClickedNavItem(index);
+                setIsBurgerOpen(false);
+                router.push(`/${item.replace(/\s/g, "").toLowerCase()}`);
+              }}
+            >
+              {item}
+            </div>
+          </Link>
         ))}
       </section>
     </React.Fragment>

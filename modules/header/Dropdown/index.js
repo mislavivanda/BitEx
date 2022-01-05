@@ -28,7 +28,7 @@ const Dropdown = () => {
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
         <ul
-          className={`py-1 absolute list-none right-0 top-[calc(100%+1rem)] bg-white shadow-md rounded-md z-30
+          className={`py-1 absolute list-none right-0 top-[calc(100%+1rem)] bg-white shadow-md rounded-md z-40
                     ${
                       isOpened ? "opacity-1" : "opacity-0"
                     } transition-opacity duration-500 ease-in-out

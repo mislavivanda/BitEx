@@ -8,6 +8,8 @@ import DogeCoin from "../assets/doge_logo.png";
 import ETHCoin from "../assets/ETH_logo.png";
 import SolanaCoin from "../assets/solana_logo.png";
 
+import VisaIcon from "../assets/visa.png";
+
 const mockArticles = [
   {
     picture: ArticlePicture,
@@ -265,10 +267,26 @@ const mockCryptoOffer = [
   },
 ];
 
+const mockCreditCards = [
+  {
+    image: VisaIcon,
+    number: "5156********2365",
+  },
+  {
+    image: VisaIcon,
+    number: "5156********2365",
+  },
+  {
+    image: VisaIcon,
+    number: "5156********2365",
+  },
+];
+
 export {
   mockArticles,
   mockDashboardData,
   mockTradesData,
   mockAnalyticsData,
   mockCryptoOffer,
+  mockCreditCards,
 };

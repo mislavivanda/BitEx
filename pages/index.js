@@ -14,10 +14,7 @@ const Home = () => {
   return (
     <>
       <section className="flex flex-wrap items-center justify-evenly w-full ">
-        <div
-          className="flex-grow relative w-full h-[300px] max-w-lg"
-          style={{ zIndex: -1 }}
-        >
+        <div className="flex-grow relative w-full h-[300px] max-w-lg">
           <Image
             src={HomeImage}
             layout="fill"
@@ -46,10 +43,7 @@ const Home = () => {
       <section className="w-full mt-10 py-5 text-center">
         <h1 className="text-5xl font-extrabold">Why use BitEx?</h1>
         <div className="mt-5 flex flex-wrap justify-evenly items-center">
-          <div
-            className="w-[100px] flex flex-col justify-center items-center"
-            style={{ zIndex: -1 }}
-          >
+          <div className="w-[100px] flex flex-col justify-center items-center">
             <Image
               src={LineChart}
               width={72}
@@ -59,10 +53,7 @@ const Home = () => {
             />
             <h2 className="font-bold text-xl">Easy trading</h2>
           </div>
-          <div
-            className="w-[100px] flex flex-col justify-center items-center"
-            style={{ zIndex: -1 }}
-          >
+          <div className="w-[100px] flex flex-col justify-center items-center">
             <Image
               src={CreditCard}
               width={72}
@@ -92,11 +83,7 @@ const Home = () => {
         <div className="flex mt-5 overflow-x-auto items-center sm:justify-evenly">
           {[ETHCoin, SolanaCoin, BTCCoin, DogeCoin, BinanceCoin].map(
             (element, index) => (
-              <div
-                key={index}
-                className="relative p-4 hover:cursor-pointer"
-                style={{ zIndex: -1 }}
-              >
+              <div key={index} className="p-4 hover:cursor-pointer">
                 <Image
                   src={element}
                   width={90}
