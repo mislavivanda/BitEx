@@ -34,7 +34,13 @@ const Dropdown = () => {
                     } transition-opacity duration-500 ease-in-out
                 `}
         >
-          <li className="flex items-center hover:cursor-pointer py-2 px-6">
+          <li
+            className="flex items-center hover:cursor-pointer py-2 px-6"
+            onClick={() => {
+              setIsOpened(false);
+              router.push("/account");
+            }}
+          >
             <svg
               className="mr-2"
               xmlns="http://www.w3.org/2000/svg"
@@ -50,17 +56,15 @@ const Dropdown = () => {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span
-              className="text-primary-color"
-              onClick={() => {
-                setIsOpened(false);
-                router.push("/account");
-              }}
-            >
-              Account
-            </span>
+            <span className="text-primary-color">Account</span>
           </li>
-          <li className="flex items-center hover:cursor-pointer py-2 px-6">
+          <li
+            className="flex items-center hover:cursor-pointer py-2 px-6"
+            onClick={() => {
+              setIsOpened(false);
+              router.push("/login");
+            }}
+          >
             <svg
               className="mr-2"
               xmlns="http://www.w3.org/2000/svg"
@@ -77,15 +81,7 @@ const Dropdown = () => {
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
             </svg>
-            <span
-              className="text-primary-color"
-              onClick={() => {
-                setIsOpened(false);
-                router.push("/login");
-              }}
-            >
-              Logout
-            </span>
+            <span className="text-primary-color">Logout</span>
           </li>
         </ul>
       </div>

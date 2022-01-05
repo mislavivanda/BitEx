@@ -23,6 +23,9 @@ module.exports = {
       },
 
       colors: {
+        "input-color": {
+          DEFAULT: "#F3F3F3",
+        },
         "primary-color": {
           //light: '#642dfd',
           DEFAULT: "#642dfd",

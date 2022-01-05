@@ -42,8 +42,8 @@ const Home = () => {
       </section>
       <section className="w-full mt-10 py-5 text-center">
         <h1 className="text-5xl font-extrabold">Why use BitEx?</h1>
-        <div className="mt-5 flex flex-wrap justify-evenly items-center">
-          <div className="w-[100px] flex flex-col justify-center items-center">
+        <div className="mt-5 flex flex-col sm:flex-row sm:justify-evenly items-center">
+          <div className="w-[100px] p-2 sm:p-0 flex flex-col justify-center items-center">
             <Image
               src={LineChart}
               width={72}
@@ -53,7 +53,7 @@ const Home = () => {
             />
             <h2 className="font-bold text-xl">Easy trading</h2>
           </div>
-          <div className="w-[100px] flex flex-col justify-center items-center">
+          <div className="w-[100px] p-2 sm:p-0 flex flex-col justify-center items-center">
             <Image
               src={CreditCard}
               width={72}
@@ -63,10 +63,7 @@ const Home = () => {
             />
             <h2 className="font-bold text-xl">Wallet integration</h2>
           </div>
-          <div
-            className="w-[100px] flex flex-col justify-center items-center"
-            style={{ zIndex: -1 }}
-          >
+          <div className="w-[100px] p-2 sm:p-0 flex flex-col justify-center items-center">
             <Image
               src={BarChart}
               width={72}
@@ -74,7 +71,7 @@ const Home = () => {
               layout="fixed"
               alt="Bar chart icon"
             />
-            <h2 className="font-bold text-xl">Easy trading</h2>
+            <h2 className="font-bold text-xl">Data analytics</h2>
           </div>
         </div>
       </section>

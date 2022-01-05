@@ -7,9 +7,13 @@ const Register = () => {
 
   return (
     <>
-      <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
+      <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 text-left border-b-primary-color border-b-[5px] border-solid">
         Register
       </h1>
+      <h3 className="mt-8 text-xl mx-5 sm:mx-10 max-w-[300px] text-left">
+        Trade instantly with your favorite cryptocurrency. Sign up, deposit and
+        trade some crypto!
+      </h3>
       <section className="mt-10 flex flex-wrap items-center justify-evenly">
         <div className="w-full max-w-xs">
           <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">

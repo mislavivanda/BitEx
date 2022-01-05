@@ -11,7 +11,7 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <header className="flex-shrink-0 border-b-2 border-primary-color fixed w-full top-0 px-12 py-2 flex items-center justify-between sm:justify-start bg-white z-40">
+    <header className="flex-shrink-0 border-b-2 border-primary-color fixed w-full top-0 px-6 sm:px-12 py-2 flex items-center justify-between sm:justify-start bg-white z-40">
       <div
         className="flex items-center hover:cursor-pointer z-40"
         onClick={() => router.push("/")}
