@@ -1,4 +1,5 @@
 import { Button, InputField, Label } from "../components";
+import Link from "next/link";
 
 const Login = () => {
   const onLogin = () => {
@@ -39,12 +40,11 @@ const Login = () => {
             <div className="mt-6">
               Don't have an account?
               <div>
-                <a
-                  className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                  href="#"
-                >
-                  Register now!
-                </a>
+                <Link href="/register">
+                  <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    Register now!
+                  </a>
+                </Link>
               </div>
             </div>
           </form>

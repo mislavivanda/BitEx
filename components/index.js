@@ -4,5 +4,6 @@ import BlogsSection from "./blogsSection";
 import InputField from "./inputField";
 import Label from "./label";
 import Avatar from "./avatar";
+import Widget from "./widget";
 
-export { Button, Navigation, BlogsSection, InputField, Label, Avatar };
+export { Button, Navigation, BlogsSection, InputField, Label, Avatar, Widget };
