@@ -49,6 +49,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: -1,
+    growthValue: 2.37,
     holding: 146000,
   },
   {
@@ -56,6 +58,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: -1,
+    growthValue: 2.37,
     holding: 146000,
   },
   {
@@ -63,6 +67,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: -1,
+    growthValue: 2.37,
     holding: 146000,
   },
   {
@@ -70,6 +76,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: 1,
+    growthValue: 3.63,
     holding: 146000,
   },
   {
@@ -77,6 +85,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: 0,
+    growthValue: 0,
     holding: 146000,
   },
   {
@@ -84,6 +94,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: 1,
+    growthValue: 2.17,
     holding: 146000,
   },
   {
@@ -91,6 +103,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: -1,
+    growthValue: 2.37,
     holding: 146000,
   },
   {
@@ -98,6 +112,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: 0,
+    growthValue: 0,
     holding: 146000,
   },
   {
@@ -105,6 +121,8 @@ const mockDashboardData = [
     asset: "Bitcoin(BTC)",
     amount: 45.6,
     price: 30,
+    growthSign: 1,
+    growthValue: 4.11,
     holding: 146000,
   },
 ];
@@ -117,6 +135,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -125,6 +147,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -133,6 +159,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -141,6 +171,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -149,6 +183,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -157,6 +195,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -165,6 +207,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -173,6 +219,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -181,6 +231,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -189,6 +243,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -197,6 +255,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -205,6 +267,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
   {
     asset1Icon: BitcoinLogo,
@@ -213,6 +279,10 @@ const mockTradesData = [
     asset2Icon: ETHLogo,
     asset2: "Ethereum(ETH)",
     amount2: 34673,
+    transactionNumber: "15fss148saxf",
+    approvalNumber: "ssw33gghs2342a",
+    time: "04.01.2022. 16:35:43",
+    feePrice: 19,
   },
 ];
 

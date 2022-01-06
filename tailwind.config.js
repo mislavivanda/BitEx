@@ -23,6 +23,9 @@ module.exports = {
       },
 
       colors: {
+        "hover-select": {
+          DEFAULT: "#f6f6f7",
+        },
         "input-color": {
           DEFAULT: "#F3F3F3",
         },

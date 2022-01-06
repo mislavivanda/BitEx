@@ -35,7 +35,7 @@ const Dropdown = () => {
                 `}
         >
           <li
-            className="flex items-center hover:cursor-pointer py-2 px-6"
+            className="flex items-center hover:cursor-pointer py-2 px-6 hover:bg-hover-select transition-all duration-200 ease-in-out"
             onClick={() => {
               setIsOpened(false);
               router.push("/account");
@@ -59,7 +59,7 @@ const Dropdown = () => {
             <span className="text-primary-color">Account</span>
           </li>
           <li
-            className="flex items-center hover:cursor-pointer py-2 px-6"
+            className="flex items-center hover:cursor-pointer py-2 px-6 hover:bg-hover-select transition-all duration-200 ease-in-out"
             onClick={() => {
               setIsOpened(false);
               router.push("/login");

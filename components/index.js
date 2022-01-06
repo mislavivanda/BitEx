@@ -6,6 +6,7 @@ import Label from "./label";
 import Avatar from "./avatar";
 import Widget from "./widget";
 import Spinner from "./spinner";
+import ChevronRight from "./chevronRight";
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   Avatar,
   Widget,
   Spinner,
+  ChevronRight,
 };
