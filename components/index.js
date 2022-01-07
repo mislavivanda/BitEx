@@ -7,6 +7,7 @@ import Avatar from "./avatar";
 import Widget from "./widget";
 import Spinner from "./spinner";
 import ChevronRight from "./chevronRight";
+import Pagination from "./pagination";
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Widget,
   Spinner,
   ChevronRight,
+  Pagination,
 };

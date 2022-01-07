@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   mockDashboardData,
   mockTradesData,
   mockAnalyticsData,
   mockCreditCards,
 } from "../mockData";
-import { Button, ChevronRight, Widget } from "../components";
+import { Button, ChevronRight, Widget, Pagination } from "../components";
 import Image from "next/image";
 import FakeImage from "../assets/cash_register.png";
 
@@ -19,6 +19,7 @@ const Account = () => {
   const [analayticsPeriod, setAnalyticsPeriod] = useState("Today"); //today,last week, last month
   const [analyticsPeriodDropwdownOpen, setAnalyticsPeriodDropdownOpen] =
     useState(false);
+  const [currentDashboardPage, setCurrentDashboardPage] = useState(1);
 
   const handleTradeClick = (event, trade) => {
     console.log(event.target);
@@ -92,6 +93,12 @@ const Account = () => {
       }
     }
   };
+
+  const currentDashboardTableData = useMemo(() => {
+    const firstPageIndex = (currentDashboardPage - 1) * 5;
+    const lastPageIndex = firstPageIndex + 5;
+    return mockDashboardData.slice(firstPageIndex, lastPageIndex);
+  }, [currentDashboardPage]);
 
   return (
     <>
@@ -381,6 +388,12 @@ const Account = () => {
                   )}
                 </tbody>
               </table>
+              <Pagination
+                currentPage={currentDashboardPage}
+                totalCount={mockDashboardData.length}
+                pageSize={5}
+                onPageChange={(page) => setCurrentDashboardPage(page)}
+              />
             </div>
           ) : (
             <div className="mt-8 text-3xl font-extrabold text-font-color">
