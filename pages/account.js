@@ -1,13 +1,22 @@
 import React, { useState, useMemo } from "react";
 import {
-  mockDashboardData,
+  mockPortfolioData,
   mockTradesData,
   mockAnalyticsData,
   mockCreditCards,
 } from "../mockData";
-import { Button, ChevronRight, Widget, Pagination } from "../components";
+import {
+  Button,
+  ChevronRight,
+  Widget,
+  Pagination,
+  Popup,
+  Label,
+} from "../components";
 import Image from "next/image";
 import FakeImage from "../assets/cash_register.png";
+
+const pageSize = 5;
 
 const Account = () => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
@@ -19,7 +28,15 @@ const Account = () => {
   const [analayticsPeriod, setAnalyticsPeriod] = useState("Today"); //today,last week, last month
   const [analyticsPeriodDropwdownOpen, setAnalyticsPeriodDropdownOpen] =
     useState(false);
-  const [currentDashboardPage, setCurrentDashboardPage] = useState(1);
+  const [currentPortfolioPage, setCurrentPortfolioPage] = useState(1);
+  const [currentTradesPage, setCurrentTradesPage] = useState(1);
+  const [creditCardPopupOpen, setCreditCardPopupOpen] = useState(false);
+  const [creditCardPopupData, setCreditCardPopupData] = useState({});
+
+  const handleCreditCardClick = (card) => {
+    setCreditCardPopupData(card);
+    setCreditCardPopupOpen(true);
+  };
 
   const handleTradeClick = (event, trade) => {
     console.log(event.target);
@@ -94,11 +111,17 @@ const Account = () => {
     }
   };
 
-  const currentDashboardTableData = useMemo(() => {
-    const firstPageIndex = (currentDashboardPage - 1) * 5;
-    const lastPageIndex = firstPageIndex + 5;
-    return mockDashboardData.slice(firstPageIndex, lastPageIndex);
-  }, [currentDashboardPage]);
+  const currentPortfolioTableData = useMemo(() => {
+    const firstPageIndex = (currentPortfolioPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return mockPortfolioData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPortfolioPage]);
+
+  const currentTradesTableData = useMemo(() => {
+    const firstPageIndex = (currentTradesPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return mockTradesData.slice(firstPageIndex, lastPageIndex);
+  }, [currentTradesPage]);
 
   return (
     <>
@@ -143,6 +166,7 @@ const Account = () => {
                 <div
                   key={index}
                   className="mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                  onClick={() => handleCreditCardClick(card)}
                 >
                   <div className="relative w-[60px] h-[40px]">
                     <Image
@@ -184,7 +208,7 @@ const Account = () => {
         </div>
         <div className="w-full mt-16 flex flex-col justify-center">
           <div className="flex items-center">
-            {["Dashboard", "Trades", "Analytics"].map((item, index) => (
+            {["Portfolio", "Trades", "Analytics"].map((item, index) => (
               <div
                 key={index}
                 className={`pt-2 mr-12 text-lg hover:cursor-pointer
@@ -241,7 +265,7 @@ const Account = () => {
                 <tbody className="border-b-hover-select border-b-[1px]">
                   {selectedOptionIndex === 0 ? (
                     <>
-                      {mockDashboardData.map((data, index) => (
+                      {currentPortfolioTableData.map((data, index) => (
                         <React.Fragment key={index}>
                           <tr>
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
@@ -324,10 +348,37 @@ const Account = () => {
                           <tr></tr>
                         </React.Fragment>
                       ))}
+                      {
+                        //padding da visina tablica ostane konstanta prilikom promjene stranica iako nema dovoljno redaka
+                        currentPortfolioTableData.length < pageSize ? (
+                          <>
+                            {new Array(
+                              pageSize - currentPortfolioTableData.length
+                            )
+                              .fill(0)
+                              .map(() => (
+                                <tr className="invisible">
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                </tr>
+                              ))}
+                          </>
+                        ) : null
+                      }
                     </>
                   ) : (
                     <>
-                      {mockTradesData.map((data, index) => (
+                      {currentTradesTableData.map((data, index) => (
                         <React.Fragment key={index}>
                           <tr>
                             <td
@@ -384,16 +435,56 @@ const Account = () => {
                           <tr></tr>
                         </React.Fragment>
                       ))}
+                      {
+                        //padding da visina tablica ostane konstanta prilikom promjene stranica iako nema dovoljno redaka
+                        currentTradesTableData.length < pageSize ? (
+                          <>
+                            {new Array(pageSize - currentTradesTableData.length)
+                              .fill(0)
+                              .map(() => (
+                                <tr className="invisible">
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                  <td className="p-3 text-center align-middle">
+                                    H
+                                  </td>
+                                </tr>
+                              ))}
+                          </>
+                        ) : null
+                      }
                     </>
                   )}
                 </tbody>
               </table>
-              <Pagination
-                currentPage={currentDashboardPage}
-                totalCount={mockDashboardData.length}
-                pageSize={5}
-                onPageChange={(page) => setCurrentDashboardPage(page)}
-              />
+              {selectedOptionIndex === 0 ? (
+                <Pagination
+                  currentPage={currentPortfolioPage}
+                  totalCount={mockPortfolioData.length}
+                  pageSize={pageSize}
+                  onPageChange={(page) => setCurrentPortfolioPage(page)}
+                />
+              ) : (
+                <Pagination
+                  currentPage={currentTradesPage}
+                  totalCount={mockTradesData.length}
+                  pageSize={pageSize}
+                  onPageChange={(page) => setCurrentTradesPage(page)}
+                />
+              )}
             </div>
           ) : (
             <div className="mt-8 text-3xl font-extrabold text-font-color">
@@ -466,6 +557,26 @@ const Account = () => {
             </div>
           )}
         </div>
+        <Popup isOpen={creditCardPopupOpen} closeModal={setCreditCardPopupOpen}>
+          <div className="flex flex-col">
+            <Label classes="mb-1">Card holder</Label>
+            <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">
+              <h2>{creditCardPopupData.cardHolder}</h2>
+            </div>
+            <Label classes="mb-1">Expiration date</Label>
+            <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">
+              <h2>{creditCardPopupData.expirationDate}</h2>
+            </div>
+            <Label classes="mb-1">Security code</Label>
+            <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">
+              <h2>{creditCardPopupData.securityCode}</h2>
+            </div>
+            <Label classes="mb-1">Date added</Label>
+            <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">
+              <h2>{creditCardPopupData.dateAdded}</h2>
+            </div>
+          </div>
+        </Popup>
       </section>
     </>
   );

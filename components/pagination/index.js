@@ -35,20 +35,21 @@ const Pagination = (props) => {
     <ul className="flex list-none mt-5">
       {/* Left navigation arrow */}
       <li
-        className={`flex items-center py-0 px-1 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer ${
-          currentPage === 1
-            ? "pointer-events-none bg-hover-select hover:cursor-default"
-            : ""
+        className={`flex items-center py-0 px-1 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer hover:bg-hover-select ${
+          currentPage === 1 ? "pointer-events-none hover:cursor-default" : ""
         }`}
         onClick={onPrevious}
       >
         <ChevronRight classes="rotate-180" />
       </li>
-      {paginationRange.map((pageNumber) => {
+      {paginationRange.map((pageNumber, index) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === "DOTS") {
           return (
-            <li className="flex items-center py-0 px-3 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base cursor-default bg-transparent">
+            <li
+              key={index}
+              className="flex items-center py-0 px-3 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base cursor-default bg-transparent"
+            >
               &#8230;
             </li>
           );
@@ -57,8 +58,11 @@ const Pagination = (props) => {
         // Render our Page Pills
         return (
           <li
-            className={`flex items-center py-0 px-3 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer ${
-              pageNumber === currentPage ? "bg-hover-select" : ""
+            key={index}
+            className={`flex items-center py-0 px-3 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer hover:bg-hover-select ${
+              pageNumber === currentPage
+                ? "bg-pagination-select pointer-events-none"
+                : ""
             }`}
             onClick={() => onPageChange(pageNumber)}
           >
@@ -68,9 +72,9 @@ const Pagination = (props) => {
       })}
       {/*  Right Navigation arrow */}
       <li
-        className={`flex items-center py-0 px-1 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer ${
+        className={`flex items-center py-0 px-1 h-[32px] min-w[32px] text-center mx-1 text-font-color rounded-[1rem] text-base hover:cursor-pointer hover:bg-hover-select ${
           currentPage === lastPage
-            ? "pointer-events-none bg-hover-select hover:cursor-default"
+            ? "pointer-events-none hover:cursor-default"
             : ""
         }`}
         onClick={onNext}

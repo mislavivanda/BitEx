@@ -43,7 +43,7 @@ const mockArticles = [
   },
 ];
 
-const mockDashboardData = [
+const mockPortfolioData = [
   {
     assetIcon: BitcoinLogo,
     asset: "Bitcoin(BTC)",
@@ -341,20 +341,32 @@ const mockCreditCards = [
   {
     image: VisaIcon,
     number: "5156********2365",
+    cardHolder: "John Doe",
+    expirationDate: "02/24",
+    securityCode: 236,
+    dateAdded: "01.03.2021. 16:49:54",
   },
   {
     image: VisaIcon,
     number: "5156********2365",
+    cardHolder: "John Doe",
+    expirationDate: "02/24",
+    securityCode: 236,
+    dateAdded: "01.03.2021. 16:49:54",
   },
   {
     image: VisaIcon,
     number: "5156********2365",
+    cardHolder: "John Doe",
+    expirationDate: "02/24",
+    securityCode: 236,
+    dateAdded: "01.03.2021. 16:49:54",
   },
 ];
 
 export {
   mockArticles,
-  mockDashboardData,
+  mockPortfolioData,
   mockTradesData,
   mockAnalyticsData,
   mockCryptoOffer,

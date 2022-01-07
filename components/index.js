@@ -8,6 +8,7 @@ import Widget from "./widget";
 import Spinner from "./spinner";
 import ChevronRight from "./chevronRight";
 import Pagination from "./pagination";
+import Popup from "./popup";
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Spinner,
   ChevronRight,
   Pagination,
+  Popup,
 };
