@@ -9,6 +9,7 @@ import Spinner from "./spinner";
 import ChevronRight from "./chevronRight";
 import Pagination from "./pagination";
 import Popup from "./popup";
+import Stepper from "./stepper";
 
 export {
   Button,
@@ -22,4 +23,5 @@ export {
   ChevronRight,
   Pagination,
   Popup,
+  Stepper,
 };

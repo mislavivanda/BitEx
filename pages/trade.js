@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Label, Button } from "../components";
+import { Label, Button, Stepper } from "../components";
 import BTCLogo from "../assets/BTC_logo.png";
 import Image from "next/image";
 
@@ -112,6 +112,15 @@ const Trade = () => {
       <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
         Trade
       </h1>
+      <Stepper
+        classes="mt-6 mx-auto w-full md:max-w-screen-md"
+        activeStep={2}
+        stepLabels={[
+          "Select pay method and crypto",
+          "Select crypto amount",
+          "Finish",
+        ]}
+      />
       <section className="mt-10 flex flex-wrap items-center justify-evenly">
         <div className="mt-10 w-full max-w-2xl">
           <div className="flex justify-between content-center">
