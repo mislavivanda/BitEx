@@ -178,13 +178,13 @@ const Trade = () => {
                     <td className="pb-10">
                       <div className="flex justify-between p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
                         <Image
-                          src={BTCLogo}
+                          src={selectedCrypto.icon}
                           width={20}
                           height={20}
                           layout="fixed"
                           alt="Asset icon"
                         />
-                        <p className="text-center">Bitcoin</p>
+                        <p className="text-center">{selectedCrypto.name}</p>
                       </div>
                     </td>
                   </tr>
