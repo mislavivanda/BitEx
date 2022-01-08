@@ -8,6 +8,7 @@ const Trade = () => {
   const [paymentModal, setPaymentModal] = useState(false);
   const [cryptoModal, setCryptoModal] = useState(false);
   const [selectedCrypto, setSelectedCrypto] = useState(mockCryptoOffer[0]);
+  const [selectedPayment, setSelectedPayment] = useState(mockCryptoOffer[0]);
   const [activeStep, setActiveStep] = useState(1);
   const [searchedCryptos, setSearchedCryptos] = useState("");
 
@@ -24,14 +25,25 @@ const Trade = () => {
           {[BTCLogo, BTCLogo, BTCLogo, BTCLogo, BTCLogo].map(
             (element, index) => {
               return (
-                <Image
-                  src={element}
-                  key={index}
-                  width={100}
-                  height={100}
-                  layout="fixed"
-                  alt="Asset icon"
-                />
+                <div
+                  onClick={() => {
+                    setSelectedPayment(element);
+                    setPaymentModal(false);
+                  }}
+                  className="hover:cursor-pointer"
+                >
+                  <Image
+                    src={element}
+                    key={index}
+                    width={100}
+                    height={100}
+                    layout="fixed"
+                    alt="Asset icon"
+                  />
+                  <Label forName="text" classes="text-center">
+                    Wallet
+                  </Label>
+                </div>
               );
             }
           )}
@@ -59,13 +71,15 @@ const Trade = () => {
             )
             .map((element, index) => {
               return (
-                <div>
+                <div
+                  onClick={() => {
+                    setSelectedCrypto(element);
+                    setSearchedCryptos("");
+                    setCryptoModal(false);
+                  }}
+                  className="hover:cursor-pointer"
+                >
                   <Image
-                    onClick={() => {
-                      setSelectedCrypto(element);
-                      setSearchedCryptos("");
-                      setCryptoModal(false);
-                    }}
                     key={index}
                     src={element.icon}
                     width={100}
@@ -115,11 +129,13 @@ const Trade = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="text-center">
+                    <td
+                      onClick={() => {
+                        setPaymentModal(true);
+                      }}
+                      className="text-center hover:cursor-pointer"
+                    >
                       <Image
-                        onClick={() => {
-                          setPaymentModal(true);
-                        }}
                         src={BTCLogo}
                         width={100}
                         height={100}
@@ -128,11 +144,13 @@ const Trade = () => {
                       />
                       <Label forName="text">Wallet</Label>
                     </td>
-                    <td className="text-center">
+                    <td
+                      onClick={() => {
+                        setCryptoModal(true);
+                      }}
+                      className="text-center hover:cursor-pointer"
+                    >
                       <Image
-                        onClick={() => {
-                          setCryptoModal(true);
-                        }}
                         src={selectedCrypto.icon}
                         width={100}
                         height={100}
