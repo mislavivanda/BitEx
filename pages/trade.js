@@ -161,6 +161,7 @@ const Trade = () => {
                         Payment method
                       </Label>
                     </th>
+                    <th></th>
                     <th>
                       <Label classes="text-base" forName="payment">
                         Cryptocurrency
@@ -175,6 +176,7 @@ const Trade = () => {
                         <p className="text-center">SEPA Transfer</p>
                       </div>
                     </td>
+                    <td></td>
                     <td className="pb-10">
                       <div className="flex justify-between p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
                         <Image
@@ -196,6 +198,20 @@ const Trade = () => {
                         placeholder="0.0"
                         classes="w-40"
                       />
+                    </td>
+                    <td>
+                      <svg
+                        style={{ width: "100%" }}
+                        height="20"
+                        viewBox="0 0 52 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M51.7071 8.70711C52.0976 8.31658 52.0976 7.68342 51.7071 7.29289L45.3431 0.928932C44.9526 0.538408 44.3195 0.538408 43.9289 0.928932C43.5384 1.31946 43.5384 1.95262 43.9289 2.34315L49.5858 8L43.9289 13.6569C43.5384 14.0474 43.5384 14.6805 43.9289 15.0711C44.3195 15.4616 44.9526 15.4616 45.3431 15.0711L51.7071 8.70711ZM0 9H51V7H0V9Z"
+                          fill="#D3D3D3"
+                        />
+                      </svg>
                     </td>
                     <td className="text-center">
                       <InputField
