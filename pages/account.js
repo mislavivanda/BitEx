@@ -294,7 +294,7 @@ const Account = () => {
                                       className="ml-2"
                                     >
                                       {data.growthSign === 1 ? (
-                                        //greem arrow
+                                        //green arrow
                                         <g>
                                           <path
                                             style={{
