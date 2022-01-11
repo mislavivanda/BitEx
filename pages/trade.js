@@ -256,4 +256,6 @@ const Trade = () => {
   );
 };
 
+Trade.needsAuthentication = true;
+
 export default Trade;

@@ -1,4 +1,5 @@
 const InputField = ({ placeholder, id, type, classes }) => {
+  //nekontrolirana komponeneta, uzimamo podatke klikom na login, stateless
   return (
     <>
       <input

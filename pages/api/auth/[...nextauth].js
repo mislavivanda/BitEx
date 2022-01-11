@@ -1,30 +1,64 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
-import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 //CATCH ALL ROUTE(FILENAME [...NAME].js)-> All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js.
 
 export default NextAuth({
+  session: {
+    jwt: true,
+  },
+  jwt: {
+    //https://next-auth.js.org/configuration/options#jwt
+    secret: process.env.JWT_SECRET,
+  },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET,
-    }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      async authorize(credentials) {
+        //credentials je objekt koji se proslijeduje kod poziva signIn('credentials',objekt) funkcije
+        //poozivi contenful?
+
+        if (credentials.email === "admin" && credentials.password === "admin") {
+          // Any object returned will be saved in `user` property of the JWT
+          //ovo vracamo pozivu signin funkcije
+          console.log("Prosao login");
+          return {
+            name: "Mate",
+            surname: "Drazic-Balov",
+            email: credentials.email,
+          };
+        }
+        // If you return null or false then the credentials will be rejected
+        else return null;
+      },
     }),
   ],
-  /*NextAuth.js automatically creates simple, unbranded authentication pages for handling Sign in, Sign out, Email Verification and displaying error messages.
 
-The options displayed on the sign-up page are automatically generated based on the providers specified in the options passed to NextAuth.js. */
+  /*The options displayed on the sign-up page are automatically generated based on the providers specified in the options passed to NextAuth.js. */
   pages: {
     signIn: "/login",
-    signOut: "/",
+    newUser: "/register",
   },
+  /*   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return true
+      } else {
+        // Return false to display a default error message
+        return false
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    }
+  } */
 });

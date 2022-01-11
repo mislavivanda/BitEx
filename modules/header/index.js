@@ -4,11 +4,16 @@ import { Navigation, Button, Avatar } from "../../components";
 import Dropdown from "./dropdown";
 import Image from "next/image";
 import LogoImage from "../../assets/logo.png";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+
+  const { data: session } = useSession();
   const router = useRouter();
+
+  console.log("User session");
+  console.log(session);
 
   return (
     <header className="flex-shrink-0 border-b-2 border-primary-color fixed w-full top-0 px-6 sm:px-12 py-2 flex items-center justify-between sm:justify-start bg-white z-40">
@@ -28,12 +33,15 @@ const Header = () => {
       <Navigation
         isOpen={isBurgerOpen}
         setIsBurgerOpen={setIsBurgerOpen}
-        isUserLoggedIn={isUserLoggedIn}
+        isUserLoggedIn={session}
       />
       <div className="hidden sm:flex items-center justify-end flex-grow">
-        {isUserLoggedIn ? (
+        {session ? (
           <>
-            <Avatar textContent="($500)" firstLetter="M" />
+            <Avatar
+              textContent="($500)"
+              firstLetter={session.user.name[0].toUpperCase()}
+            />
             <Dropdown />
           </>
         ) : (

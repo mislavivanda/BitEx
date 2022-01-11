@@ -582,4 +582,6 @@ const Account = () => {
   );
 };
 
+Account.needsAuthentication = true;
+
 export default Account;
