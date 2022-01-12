@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 const Dropdown = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   const router = useRouter();
+
   return (
     <>
       <div
@@ -62,7 +64,7 @@ const Dropdown = () => {
             className="flex items-center hover:cursor-pointer py-2 px-6 hover:bg-hover-select transition-all duration-200 ease-in-out"
             onClick={() => {
               setIsOpened(false);
-              router.push("/login");
+              signOut({ callbackUrl: "/login" });
             }}
           >
             <svg

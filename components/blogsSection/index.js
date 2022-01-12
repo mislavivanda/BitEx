@@ -18,7 +18,7 @@ const BlogsSection = ({ type }) => {
         <article
           key={index}
           className="shadow-xl rounded-md my-5 sm:my-10 sm:pr-10 w-full flex flex-col justify-center sm:flex-row sm:items-center sm:h-96 max-w-screen-xl hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-500 ease-in-out"
-          onClick={() => router.push(`/blog/${article}`)}
+          onClick={() => router.push(`/blog/${article.title}`)}
         >
           <div className="relative h-60 sm:basis-2/4 lg:basis-1/3 flex-shrink-0 sm:h-full">
             <Image

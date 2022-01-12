@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { Button } from "../../components";
 import Dropdown from "../../modules/header/dropdown";
 import Link from "next/link";
 
 const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
-  const [clickedNavItem, setClickedNavItem] = useState(null);
-
   const router = useRouter();
 
   return (
@@ -17,11 +15,10 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
           <Link key={index} href={`/${item.replace(/\s/g, "").toLowerCase()}`}>
             <li
               className={`py-1 px-3 ${
-                clickedNavItem === index ? "text-primary-color" : "border-none"
+                `/${item.replace(/\s/g, "").toLowerCase()}` === router.route
+                  ? "text-primary-color"
+                  : "border-none"
               } hover:cursor-pointer`}
-              onClick={(e) =>
-                clickedNavItem !== index && setClickedNavItem(index)
-              }
             >
               {item}
             </li>
@@ -75,12 +72,11 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
             <div
               key={index}
               className={`my-2 py-1 px-3 ${
-                clickedNavItem === index
+                `/${item.replace(/\s/g, "").toLowerCase()}` === router.route
                   ? "bg-primary-color text-white"
                   : "text-font-color-dark"
               } hover:bg-primary-color cursor-pointer hover:text-white`}
               onClick={() => {
-                clickedNavItem !== index && setClickedNavItem(index);
                 setIsBurgerOpen(false);
                 router.push(`/${item.replace(/\s/g, "").toLowerCase()}`);
               }}
