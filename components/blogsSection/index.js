@@ -4,7 +4,7 @@ import { mockArticles } from "../../mockData";
 import ArticlePicture from "../../assets/mock_article.png";
 import { useRouter } from "next/router";
 
-const BlogsSection = ({ type }) => {
+const BlogsSection = ({ type, blogsData }) => {
   const router = useRouter();
 
   return (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getSession, signIn } from "next-auth/react";
+import { getUser, getCryptoCoin } from "../lib/dataSource";
 
 const Login = () => {
   const [runAnimation, setRunAnimation] = useState(false); //za pokretanje animacije svaki put kad se ude na login
@@ -30,18 +31,22 @@ const Login = () => {
   }, [loading]);
 
   //napravi za github isto login funkcije koje ce pozivat signin('github') i signin('goggle'), proslijedi string u onlogin funkciju da znamo razlikovat tip
-  const onLogin = async (e) => {
+  const onCredentialsLogin = async (e) => {
     e.preventDefault();
     setLoginLoading(true);
 
-    const enteredEmail = document.getElementById("user-password").value;
-    const enteredPassword = document.getElementById("user-email").value;
-
-    const result = await signIn("credentials", {
+    const enteredEmail = document.getElementById("user-email").value.toString();
+    const enteredPassword = document
+      .getElementById("user-password")
+      .value.toString();
+    console.log(enteredEmail);
+    await getCryptoCoin("/bitcoin");
+    /*     const result = await signIn("credentials", {
       //on ce po defaultu redirectat di treba zbog use
+      redirect:false,
       email: enteredEmail,
       password: enteredPassword,
-    });
+    }); */
 
     if (!result) {
       console.log("NEUSPJEŠNA UATENTIKACIJA, KRIVI PODACI");
@@ -101,7 +106,11 @@ const Login = () => {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <Button type="filled" onClick={onLogin} classes="relative">
+                <Button
+                  type="filled"
+                  onClick={onCredentialsLogin}
+                  classes="relative"
+                >
                   <span className={`${loginLoading ? "invisible" : ""}`}>
                     Log in
                   </span>{" "}

@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import { getUser } from "../../../lib/dataSource";
 //CATCH ALL ROUTE(FILENAME [...NAME].js)-> All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js.
 
 export default NextAuth({
@@ -24,18 +24,15 @@ export default NextAuth({
     }),
     CredentialsProvider({
       async authorize(credentials) {
+        console.log("0P");
         //credentials je objekt koji se proslijeduje kod poziva signIn('credentials',objekt) funkcije
         //poozivi contenful?
-
-        if (credentials.email === "admin" && credentials.password === "admin") {
+        const user = await getUser(credentials.email, credentials.password);
+        if (user) {
           // Any object returned will be saved in `user` property of the JWT
           //ovo vracamo pozivu signin funkcije
           console.log("Prosao login");
-          return {
-            name: "Mate",
-            surname: "Drazic-Balov",
-            email: credentials.email,
-          };
+          return user;
         }
         // If you return null or false then the credentials will be rejected
         else return null;
