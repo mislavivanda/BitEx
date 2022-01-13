@@ -7,7 +7,7 @@ const CryptoOffer = ({ cryptoOfferData }) => {
   return (
     <>
       <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
-        Crypto offer:
+        Crypto offer
       </h1>
       <section className="mt-20 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 content-around justify-evenly">
         {mockCryptoOffer.map((crypto) => (

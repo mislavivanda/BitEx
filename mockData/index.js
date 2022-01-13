@@ -10,6 +10,11 @@ import SolanaCoin from "../assets/solana_logo.png";
 
 import VisaIcon from "../assets/visa.png";
 
+import BankIcon from "../assets/bank.jpg";
+import CashIcon from "../assets/cash.jpg";
+import CreditCardIcon from "../assets/creditcard.jpg";
+import SepaIcon from "../assets/sepa.jpg";
+
 const mockArticles = [
   {
     picture: ArticlePicture,
@@ -364,6 +369,25 @@ const mockCreditCards = [
   },
 ];
 
+const mockPaymentOptions = [
+  {
+    image: BankIcon,
+    name: "Bank transfer",
+  },
+  {
+    image: CashIcon,
+    name: "Cash",
+  },
+  {
+    image: CreditCardIcon,
+    name: "Credit card",
+  },
+  {
+    image: SepaIcon,
+    name: "SEPA transfer",
+  },
+];
+
 export {
   mockArticles,
   mockPortfolioData,
@@ -371,4 +395,5 @@ export {
   mockAnalyticsData,
   mockCryptoOffer,
   mockCreditCards,
+  mockPaymentOptions,
 };
