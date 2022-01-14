@@ -3,7 +3,7 @@ import Image from "next/image";
 const Widget = ({ color, icon, value, description, classes }) => {
   return (
     <article
-      className={`w-72 p-6 flex flex-col items-center justify-evenly flex-nowrap flex-shrink-0 rounded-[1rem] shadow-xl ${classes}`}
+      className={`w-72 p-6 flex flex-col items-center justify-evenly flex-nowrap flex-shrink-0 rounded-[1rem] shadow-xl ${classes} text-white`}
       style={{ backgroundColor: color }}
     >
       <Image

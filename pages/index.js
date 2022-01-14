@@ -9,8 +9,9 @@ import BTCCoin from "../assets/BTC_logo.png";
 import DogeCoin from "../assets/doge_logo.png";
 import ETHCoin from "../assets/ETH_logo.png";
 import SolanaCoin from "../assets/solana_logo.png";
+import { getBlogPosts, getCryptoOffer } from "../lib/dataSource";
 
-const Home = () => {
+const Home = ({ latestNews, mostTradedCryptos }) => {
   return (
     <>
       <section className="flex flex-wrap items-center justify-evenly w-full ">
@@ -99,3 +100,16 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const latestNews = await getBlogPosts(5);
+
+  const mostTradedCrpytos = await getCryptoOffer(5);
+
+  return {
+    props: {
+      latestNews,
+      mostTradedCrpytos,
+    },
+  };
+}

@@ -1,8 +1,9 @@
 import { mockCryptoOffer } from "../mockData";
 import CryptoCard from "../modules/cryptoCard";
 import { Button } from "../components";
+import { getCryptoOffer } from "../lib/dataSource";
 
-const CryptoOffer = () => {
+const CryptoOffer = ({ cryptoOfferData }) => {
   return (
     <>
       <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
@@ -33,3 +34,13 @@ const CryptoOffer = () => {
 };
 
 export default CryptoOffer;
+
+export async function getStaticProps() {
+  const cryptoOfferData = await getCryptoOffer();
+
+  return {
+    props: {
+      cryptoOfferData,
+    },
+  };
+}

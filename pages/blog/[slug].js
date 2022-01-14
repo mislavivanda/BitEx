@@ -1,8 +1,9 @@
 import Image from "next/image";
 import mockArticleImage from "../../assets/mock_article.png";
 import { Avatar } from "../../components";
+import { getBlogPost, getBlogSlugs } from "../lib/dataSource";
 
-const Blog = () => {
+const Blog = ({ blogData }) => {
   console.log(mockArticleImage);
   return (
     <>
@@ -120,3 +121,28 @@ const Blog = () => {
 };
 
 export default Blog;
+
+//SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
+export async function getStaticPaths() {
+  //OVO SE POZIVA PRIJE getStaticProps
+
+  //dobij slugove svih postova kroz helper poziv API-a
+  const slugs = await getBlogSlugs();
+
+  const paths = slugs.map((blogSlug) => ({ params: { slug: blogSlug } }));
+
+  return {
+    paths: paths,
+    fallback: false, //ovo definira ISKLJUCIVO STATICKO DEFINIRANJE
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const blogData = await getBlogPost(params.slug); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+
+  return {
+    props: {
+      blogData,
+    },
+  };
+}

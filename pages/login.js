@@ -1,6 +1,6 @@
 import { Button, InputField, Label, Spinner } from "../components";
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getSession, signIn } from "next-auth/react";
 
@@ -30,45 +30,33 @@ const Login = () => {
   }, [loading]);
 
   //napravi za github isto login funkcije koje ce pozivat signin('github') i signin('goggle'), proslijedi string u onlogin funkciju da znamo razlikovat tip
-  const onLogin = async (e) => {
+  const onCredentialsLogin = async (e) => {
     e.preventDefault();
-    setLoginLoading(true);
 
-    const enteredEmail = document.getElementById("user-password").value;
-    const enteredPassword = document.getElementById("user-email").value;
+    const enteredEmail = document.getElementById("user-email").value.toString();
+    const enteredPassword = document
+      .getElementById("user-password")
+      .value.toString();
+    if (enteredEmail && enteredPassword) {
+      setLoginLoading(true);
 
-    const result = await signIn("credentials", {
-      //on ce po defaultu redirectat di treba zbog use
-      email: enteredEmail,
-      password: enteredPassword,
-    });
-
-    if (!result) {
-      console.log("NEUSPJEŠNA UATENTIKACIJA, KRIVI PODACI");
+      signIn("credentials", {
+        //on ce po defaultu redirectat di treba
+        email: enteredEmail,
+        password: enteredPassword,
+      });
     }
   };
 
   const onGithubLogin = async (e) => {
     e.preventDefault();
-    const result = await signIn("github");
-
-    console.log("Result from github");
-    console.log(result);
-    if (!result) {
-      console.log("Neusoješna github logiranje");
-    }
+    signIn("github");
   };
 
   const onGoogleLogin = async (e) => {
     e.preventDefault();
 
-    const result = await signIn("google");
-
-    console.log("Result from google");
-    console.log(result);
-    if (!result) {
-      console.log("Neusoješno google logiranje");
-    }
+    signIn("google");
   };
 
   if (!loading) {
@@ -97,11 +85,15 @@ const Login = () => {
                 <InputField
                   id="user-password"
                   type="password"
-                  placeholder="******************"
+                  placeholder="*************"
                 />
               </div>
               <div className="flex items-center justify-between">
-                <Button type="filled" onClick={onLogin} classes="relative">
+                <Button
+                  type="filled"
+                  onClick={onCredentialsLogin}
+                  classes="relative"
+                >
                   <span className={`${loginLoading ? "invisible" : ""}`}>
                     Log in
                   </span>{" "}

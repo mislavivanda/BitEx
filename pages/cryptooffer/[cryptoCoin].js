@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Button } from "../../components";
+import { getCryptoSlugs, getCryptoCoin } from "../../lib/dataSource";
 
 import BinanceCoin from "../../assets/binance_coin_logo.png";
 
-const CryptoCoinInfo = () => {
+const CryptoCoinInfo = ({ cryptoCoinData }) => {
   const router = useRouter();
 
   return (
@@ -35,7 +36,7 @@ const CryptoCoinInfo = () => {
             </p>
             <div className="text-center">
               <Button
-                onClick={() => router.push("/trade")}
+                onClick={() => router.push("/trade")} //posalji state unutar pusha
                 type="filled"
                 classes="mt-5 text-xl"
               >
@@ -83,3 +84,28 @@ const CryptoCoinInfo = () => {
 };
 
 export default CryptoCoinInfo;
+
+//SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
+export async function getStaticPaths() {
+  //OVO SE POZIVA PRIJE getStaticProps
+
+  //dobij slugove svih postova kroz helper poziv API-a
+  const slugs = await getCryptoSlugs();
+
+  const paths = slugs.map((cryptoSlug) => ({ params: { slug: cryptoSlug } }));
+
+  return {
+    paths: paths,
+    fallback: false, //ovo definira ISKLJUCIVO STATICKO DEFINIRANJE
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const cryptoCoinData = await getCryptoCoin(params.slug); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+
+  return {
+    props: {
+      cryptoCoinData,
+    },
+  };
+}

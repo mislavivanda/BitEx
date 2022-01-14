@@ -16,8 +16,13 @@ import {
 import { useRouter } from "next/router";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+import {
+  getPaymentOptions,
+  getCreditCards,
+  getCryptoOffer,
+} from "../lib/dataSource";
 
-const Trade = () => {
+const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   const [paymentModal, setPaymentModal] = useState(false);
   const [cryptoModal, setCryptoModal] = useState(false);
   const [creditCardModal, setCreditCardModal] = useState(false);
@@ -43,7 +48,7 @@ const Trade = () => {
     setTrading(true);
     setTimeout(() => {
       setTrading(false);
-      setActiveStep(3);
+      setActiveStep(4);
     }, 2000);
   };
 
@@ -61,6 +66,7 @@ const Trade = () => {
           {mockPaymentOptions.map((element, index) => {
             return (
               <div
+                key={index}
                 onClick={() => {
                   setSelectedPayment(element);
                   if (element.name == "Credit card") {
@@ -73,7 +79,6 @@ const Trade = () => {
               >
                 <Image
                   src={element.image}
-                  key={index}
                   width={100}
                   height={100}
                   layout="fixed"
@@ -110,6 +115,7 @@ const Trade = () => {
             .map((element, index) => {
               return (
                 <div
+                  key={index}
                   onClick={() => {
                     setSelectedCrypto(element);
                     setSearchedCryptos("");
@@ -118,7 +124,6 @@ const Trade = () => {
                   className="hover:cursor-pointer"
                 >
                   <Image
-                    key={index}
                     src={element.icon}
                     width={100}
                     height={100}
@@ -350,7 +355,7 @@ const Trade = () => {
                       </td>
                     ) : (
                       <td className="pb-10">
-                        <div className="flex justify-between p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color my-0 mx-auto">
+                        <div className="flex justify-center p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color my-0 mx-auto">
                           <Image
                             src={selectedCrypto.icon}
                             width={20}
@@ -358,7 +363,9 @@ const Trade = () => {
                             layout="fixed"
                             alt="Asset icon"
                           />
-                          <p className="text-center">{selectedCrypto.name}</p>
+                          <p className="text-center ml-2">
+                            {selectedCrypto.name}
+                          </p>
                         </div>
                       </td>
                     )}
@@ -434,7 +441,7 @@ const Trade = () => {
         </section>
       ) : null}
 
-      {activeStep == 3 ? (
+      {activeStep == 4 ? (
         <section className="flex flex-wrap items-center justify-evenly">
           <div className="mt-10 w-full h-40 max-w-2xl" ref={confettiRef}>
             <div className="flex justify-between content-center">
@@ -512,7 +519,11 @@ const Trade = () => {
                       "ssw33gghs2342a",
                       "04.01.2022. 16:35:43",
                     ].map((element, index) => {
-                      return <td className="text-center">{element}</td>;
+                      return (
+                        <td key={index} className="text-center">
+                          {element}
+                        </td>
+                      );
                     })}
                   </tr>
                 </tbody>
@@ -579,3 +590,19 @@ const Trade = () => {
 Trade.needsAuthentication = false;
 
 export default Trade;
+
+export async function getStaticProps() {
+  const cryptoOffer = await getCryptoOffer(); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+
+  const creditCards = await getCreditCards();
+
+  const paymentOptions = await getPaymentOptions();
+
+  return {
+    props: {
+      paymentOptions,
+      creditCards,
+      cryptoOffer,
+    },
+  };
+}

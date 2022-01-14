@@ -1,6 +1,6 @@
 //komponeneta koja u _app.js s kojom wrappamo SAMO ONE STRANICE KOJE ZAHTIJEVAJU AUTENTIKACIJU
 //PROVJERAVA POSTOJI LI SESIJA, AKO NE REDIRECTA NA LOGIN
-import { useSession, getSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const AuthComponent = ({ children }) => {
   const { data: session, status } = useSession({
