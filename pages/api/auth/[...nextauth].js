@@ -28,7 +28,7 @@ export default NextAuth({
         //poozivi contenful
         const userData = await fetch(
           //pozovi api koji provjerava email i password -> u produkciji TLS tako da se ne moze vidit username i pass od napadaca
-          `${process.env.DOMAIN}:${process.env.PORT}/api/userauth`,
+          `${process.env.DOMAIN}/api/userauth`,
           {
             method: "POST",
             headers: {
