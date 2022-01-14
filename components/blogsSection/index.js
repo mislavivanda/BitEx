@@ -40,7 +40,7 @@ const BlogsSection = ({ type, blogsData }) => {
           </div>
         </article>
       ))}
-      <h3>Haven't had enough?</h3>
+      <h3>Haven&apos;t had enough?</h3>
       <Button
         onClick={() => console.log("Load more clicked")}
         type="filled"

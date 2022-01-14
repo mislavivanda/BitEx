@@ -20,7 +20,7 @@ const CryptoOffer = ({ cryptoOfferData }) => {
         ))}
       </section>
       <section className="mt-10 flex flex-col justify-center items-center">
-        <h3>Haven't had enough?</h3>
+        <h3>Haven&apos;t had enough?</h3>
         <Button
           onClick={() => console.log("Load more clicked")}
           type="filled"
