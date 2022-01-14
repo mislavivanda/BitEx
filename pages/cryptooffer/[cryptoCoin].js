@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Button } from "../../components";
-import { getCryptoSlugs, getCryptoCoin } from "../lib/dataSource";
+import { getCryptoSlugs, getCryptoCoin } from "../../lib/dataSource";
 
 import BinanceCoin from "../../assets/binance_coin_logo.png";
 

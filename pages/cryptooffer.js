@@ -36,7 +36,7 @@ const CryptoOffer = ({ cryptoOfferData }) => {
 export default CryptoOffer;
 
 export async function getStaticProps() {
-  const cryptoOfferData = await getCryptoOffer(); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+  const cryptoOfferData = await getCryptoOffer();
 
   return {
     props: {

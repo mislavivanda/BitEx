@@ -33,14 +33,14 @@ const Header = () => {
       <Navigation
         isOpen={isBurgerOpen}
         setIsBurgerOpen={setIsBurgerOpen}
-        isUserLoggedIn={session}
+        isUserLoggedIn={!!session}
       />
       <div className="hidden sm:flex items-center justify-end flex-grow">
         {session ? (
           <>
             <Avatar
               textContent="($500)"
-              firstLetter={session.user.name[0].toUpperCase()}
+              firstLetter={session.userData.name[0].toUpperCase()}
             />
             <Dropdown />
           </>

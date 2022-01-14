@@ -13,12 +13,14 @@ import {
   Popup,
   Label,
 } from "../components";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import FakeImage from "../assets/cash_register.png";
+import { getUserAccountData } from "../lib/dataSource";
 
 const pageSize = 5;
 
-const Account = () => {
+const Account = ({ accountData }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
   const [analyticsPeriodData, setAnalyticsPeriodData] = useState({
     deposit: mockAnalyticsData.today.deposit,
@@ -32,6 +34,10 @@ const Account = () => {
   const [currentTradesPage, setCurrentTradesPage] = useState(1);
   const [creditCardPopupOpen, setCreditCardPopupOpen] = useState(false);
   const [creditCardPopupData, setCreditCardPopupData] = useState({});
+
+  const { data: session } = useSession({
+    required: true,
+  });
 
   const handleCreditCardClick = (card) => {
     setCreditCardPopupData(card);
@@ -147,10 +153,10 @@ const Account = () => {
             </svg>
             <div className="flex flex-col justify-center">
               <h3 className="text-lg font-bold text-font-color">
-                Matej Dražić Balov
+                {session.userData.name + " " + session.userData.surname}
               </h3>
               <h4 className="text-md font-bold text-font-color-light">
-                matejdrazic123@gmail.com
+                {session.userData.email}
               </h4>
             </div>
           </div>
@@ -266,7 +272,9 @@ const Account = () => {
                   {selectedOptionIndex === 0 ? (
                     <>
                       {currentPortfolioTableData.map((data, index) => (
-                        <React.Fragment key={index}>
+                        <React.Fragment
+                          key={`${currentPortfolioPage}-${index}`}
+                        >
                           <tr>
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
                               <div className="flex items-center justify-center">
@@ -356,8 +364,13 @@ const Account = () => {
                               pageSize - currentPortfolioTableData.length
                             )
                               .fill(0)
-                              .map(() => (
-                                <tr className="invisible">
+                              .map((item, index) => (
+                                <tr
+                                  key={`${currentPortfolioPage}-${
+                                    currentPortfolioTableData.length + index
+                                  }`}
+                                  className="invisible"
+                                >
                                   <td className="p-3 text-center align-middle">
                                     H
                                   </td>
@@ -379,7 +392,7 @@ const Account = () => {
                   ) : (
                     <>
                       {currentTradesTableData.map((data, index) => (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={`${currentTradesPage}-${index}`}>
                           <tr>
                             <td
                               onClick={(e) => handleTradeClick(e, data)}
@@ -441,8 +454,13 @@ const Account = () => {
                           <>
                             {new Array(pageSize - currentTradesTableData.length)
                               .fill(0)
-                              .map(() => (
-                                <tr className="invisible">
+                              .map((item, index) => (
+                                <tr
+                                  key={`${currentTradesPage}-${
+                                    currentTradesTableData.length + index
+                                  }`}
+                                  className="invisible"
+                                >
                                   <td className="p-3 text-center align-middle">
                                     H
                                   </td>
@@ -585,3 +603,13 @@ const Account = () => {
 Account.needsAuthentication = true;
 
 export default Account;
+
+export async function getStaticProps() {
+  const accountData = await getUserAccountData("mislavm@gmail.com");
+
+  return {
+    props: {
+      accountData,
+    },
+  };
+}
