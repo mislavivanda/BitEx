@@ -26,6 +26,7 @@ export default NextAuth({
       async authorize(credentials) {
         //credentials je objekt koji se proslijeduje kod poziva signIn('credentials',objekt) funkcije
         //poozivi contenful
+        console.log("Inside authorize");
         const userData = await fetch(
           //pozovi api koji provjerava email i password -> u produkciji TLS tako da se ne moze vidit username i pass od napadaca
           `${process.env.DOMAIN}/api/userauth`,
