@@ -4,7 +4,6 @@ import { Avatar } from "../../components";
 import { getBlogPost, getBlogSlugs } from "../../lib/dataSource";
 
 const Blog = ({ blogData }) => {
-  console.log(mockArticleImage);
   return (
     <>
       <section className="mt-16">

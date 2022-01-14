@@ -88,11 +88,13 @@ export default CryptoCoinInfo;
 //SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
 export async function getStaticPaths() {
   //OVO SE POZIVA PRIJE getStaticProps
-
+  console.log("Inside static paths");
   //dobij slugove svih postova kroz helper poziv API-a
   const slugs = await getCryptoSlugs();
 
-  const paths = slugs.map((cryptoSlug) => ({ params: { slug: cryptoSlug } }));
+  const paths = slugs.map((cryptoSlug) => ({
+    params: { cryptoCoin: cryptoSlug },
+  }));
 
   return {
     paths: paths,
@@ -101,7 +103,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const cryptoCoinData = await getCryptoCoin(params.slug); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+  const cryptoCoinData = await getCryptoCoin(params.cryptoCoin); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
 
   return {
     props: {
