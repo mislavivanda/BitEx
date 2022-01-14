@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Label,
   Button,
@@ -14,6 +14,8 @@ import {
   mockPaymentOptions,
 } from "../mockData";
 import { useRouter } from "next/router";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 const Trade = () => {
   const [paymentModal, setPaymentModal] = useState(false);
@@ -28,6 +30,12 @@ const Trade = () => {
   const [receivedAmount, setReceivedAmount] = useState("0.00");
   const [insertAmount, setInsertAmount] = useState("0.00");
   const [trading, setTrading] = useState(false);
+  const [widthh, setWidth] = useState(null);
+  const [heightt, setHeight] = useState(null);
+
+  const { width, height } = useWindowSize();
+
+  const confettiRef = useRef(null);
 
   const router = useRouter();
 
@@ -38,6 +46,11 @@ const Trade = () => {
       setActiveStep(3);
     }, 2000);
   };
+
+  useEffect(() => {
+    setWidth(width);
+    setHeight(height);
+  }, []);
 
   return (
     <>
@@ -302,7 +315,7 @@ const Trade = () => {
               <table className="w-full border-separate">
                 <thead>
                   <tr>
-                    <th>
+                    <th className="w-1/3">
                       {buyingCrypto ? (
                         <Label classes="text-base" forName="payment">
                           Payment method
@@ -313,8 +326,8 @@ const Trade = () => {
                         </Label>
                       )}
                     </th>
-                    <th></th>
-                    <th>
+                    <th className="w-1/3"></th>
+                    <th className="w-1/3">
                       {buyingCrypto ? (
                         <Label classes="text-base" forName="payment">
                           Cryptocurrency
@@ -331,13 +344,13 @@ const Trade = () => {
                   <tr>
                     {buyingCrypto ? (
                       <td className="pb-10">
-                        <div className="p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color text-black my-0 mx-auto">
                           <p className="text-center">{selectedPayment.name}</p>
                         </div>
                       </td>
                     ) : (
                       <td className="pb-10">
-                        <div className="flex justify-between p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="flex justify-between p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color my-0 mx-auto">
                           <Image
                             src={selectedCrypto.icon}
                             width={20}
@@ -352,7 +365,7 @@ const Trade = () => {
                     <td></td>
                     {buyingCrypto ? (
                       <td className="pb-10">
-                        <div className="flex justify-between p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="flex justify-between p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color text-black my-0 mx-auto">
                           <Image
                             src={selectedCrypto.icon}
                             width={20}
@@ -365,7 +378,7 @@ const Trade = () => {
                       </td>
                     ) : (
                       <td className="pb-10">
-                        <div className="p-2 w-32 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color my-0 mx-auto">
                           <p className="text-center">{selectedPayment.name}</p>
                         </div>
                       </td>
@@ -423,18 +436,18 @@ const Trade = () => {
 
       {activeStep == 3 ? (
         <section className="flex flex-wrap items-center justify-evenly">
-          <div className="mt-10 w-full h-40 max-w-2xl">
+          <div className="mt-10 w-full h-40 max-w-2xl" ref={confettiRef}>
             <div className="flex justify-between content-center">
               <table className="w-full border-separate">
                 <thead>
                   <tr>
-                    <th className="pb-10">
+                    <th className="pb-8 w-1/3">
                       {buyingCrypto ? (
-                        <div className="p-2 w-24 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
                           <p className="text-center">${receivedAmount}</p>
                         </div>
                       ) : (
-                        <div className="flex justify-between p-2 w-24 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto ">
+                        <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
                           <Image
                             src={selectedCrypto.icon}
                             width={25}
@@ -446,7 +459,7 @@ const Trade = () => {
                         </div>
                       )}
                     </th>
-                    <th className="pb-10">
+                    <th className="pb-8 w-1/3">
                       <svg
                         style={{ width: "100%" }}
                         height="20"
@@ -460,9 +473,9 @@ const Trade = () => {
                         />
                       </svg>
                     </th>
-                    <th className="pb-10">
+                    <th className="pb-8 w-1/3">
                       {buyingCrypto ? (
-                        <div className="flex justify-between p-2 w-24 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto ">
+                        <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
                           <Image
                             src={selectedCrypto.icon}
                             width={25}
@@ -473,7 +486,7 @@ const Trade = () => {
                           <p className="mr-2">{insertAmount}</p>
                         </div>
                       ) : (
-                        <div className="p-2 w-24 h-10 bg-slate-400 rounded-3xl text-white my-0 mx-auto">
+                        <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
                           <p className="text-center">${receivedAmount}</p>
                         </div>
                       )}
@@ -503,6 +516,12 @@ const Trade = () => {
                     })}
                   </tr>
                 </tbody>
+                <Confetti
+                  recycle={false}
+                  numberOfPieces={200}
+                  width={widthh}
+                  height={heightt}
+                />
               </table>
             </div>
           </div>
@@ -557,6 +576,6 @@ const Trade = () => {
   );
 };
 
-Trade.needsAuthentication = true;
+Trade.needsAuthentication = false;
 
 export default Trade;
