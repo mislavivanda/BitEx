@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Navigation, Button, Avatar } from "../../components";
-import Dropdown from "./dropdown";
+import Dropdown from "./dropdowncomp";
 import Image from "next/image";
 import LogoImage from "../../assets/logo.png";
 import { useSession } from "next-auth/react";
