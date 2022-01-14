@@ -9,9 +9,10 @@ export default NextAuth({
   session: {
     jwt: true,
   },
+  secret: process.env.SECRET,
   jwt: {
     //https://next-auth.js.org/configuration/options#jwt
-    secret: process.env.JWT_SECRET,
+    secret: process.env.SECRET,
   },
   providers: [
     GitHubProvider({
