@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Button } from "../../components";
-import Dropdown from "../../modules/header/dropdown";
+import Dropdown from "../../modules/header/dropdowncomp";
 import Link from "next/link";
 
 const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
