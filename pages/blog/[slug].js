@@ -1,7 +1,7 @@
 import Image from "next/image";
 import mockArticleImage from "../../assets/mock_article.png";
 import { Avatar } from "../../components";
-import { getBlogPost, getBlogSlugs } from "../lib/dataSource";
+import { getBlogPost, getBlogSlugs } from "../../lib/dataSource";
 
 const Blog = ({ blogData }) => {
   console.log(mockArticleImage);
