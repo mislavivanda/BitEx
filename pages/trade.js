@@ -58,7 +58,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
       {/* MODAL - PLACANJE*/}
       <Popup isOpen={paymentModal} closeModal={setPaymentModal}>
         <Label classes="text-base">Select payment type</Label>
-        <div className="md:grid md:grid-cols-4 md:gap-6">
+        <div className="md:grid md:grid-cols-4 md:gap-6 mt-6">
           {paymentOptions.map((element, index) => {
             return (
               <div
@@ -150,7 +150,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
               setPaymentModal(false);
               setCurrentCreditCard(creditCards[index]);
               setCreditCardModal(false);
-              setSelectedPayment(paymentOptions[2]);
+              setSelectedPayment(paymentOptions[1]);
             }}
           >
             <div className="relative w-[60px] h-[40px]">
