@@ -15,7 +15,6 @@ import {
 } from "../mockData";
 import { useRouter } from "next/router";
 import Confetti from "react-confetti";
-import useWindowSize from "react-use/lib/useWindowSize";
 import {
   getPaymentOptions,
   getCreditCards,
@@ -35,10 +34,8 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   const [receivedAmount, setReceivedAmount] = useState("0.00");
   const [insertAmount, setInsertAmount] = useState("0.00");
   const [trading, setTrading] = useState(false);
-  const [widthh, setWidth] = useState(null);
-  const [heightt, setHeight] = useState(null);
-
-  const { width, height } = useWindowSize();
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
 
   const confettiRef = useRef(null);
 
@@ -53,8 +50,10 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   };
 
   useEffect(() => {
-    setWidth(width);
-    setHeight(height);
+    setWidth(window.innerWidth - 50);
+    setHeight(window.innerHeight - 50);
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
   }, []);
 
   return (
@@ -62,28 +61,30 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
       {/* MODAL - PLACANJE*/}
       <Popup isOpen={paymentModal} closeModal={setPaymentModal}>
         <Label classes="text-base">Select payment type</Label>
-        <div className="grid grid-cols-1 gap-4 border-gray-900 sm:grid-cols-2 md:grid-cols-4 mt-8">
+        <div className="md:grid md:grid-cols-4 md:gap-6">
           {mockPaymentOptions.map((element, index) => {
             return (
               <div
                 key={index}
                 onClick={() => {
-                  setSelectedPayment(element);
                   if (element.name == "Credit card") {
                     setCreditCardModal(true);
                   } else {
                     setPaymentModal(false);
+                    setSelectedPayment(element);
                   }
                 }}
                 className="hover:cursor-pointer"
               >
-                <Image
-                  src={element.image}
-                  width={100}
-                  height={100}
-                  layout="fixed"
-                  alt="Asset icon"
-                />
+                <div className="text-center">
+                  <Image
+                    src={element.image}
+                    width={100}
+                    height={100}
+                    layout="fixed"
+                    alt="Asset icon"
+                  />
+                </div>
                 <Label forName="text" classes="text-center">
                   {element.name}
                 </Label>
@@ -107,7 +108,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             }}
           />
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 mt-8">
+        <div className="md:grid md:grid-cols-4 md:gap-6 mt-8">
           {mockCryptoOffer
             .filter((element) =>
               element.name.toLowerCase().includes(searchedCryptos)
@@ -121,15 +122,17 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                     setSearchedCryptos("");
                     setCryptoModal(false);
                   }}
-                  className="hover:cursor-pointer"
+                  className="hover:cursor-pointer justify-center"
                 >
-                  <Image
-                    src={element.icon}
-                    width={100}
-                    height={100}
-                    layout="fixed"
-                    alt="Asset icon"
-                  />
+                  <div className="text-center mt-4">
+                    <Image
+                      src={element.icon}
+                      width={100}
+                      height={100}
+                      layout="fixed"
+                      alt="Asset icon"
+                    />
+                  </div>
                   <Label forName="text" classes="text-center">
                     {element.name}
                   </Label>
@@ -150,6 +153,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
               setPaymentModal(false);
               setCurrentCreditCard(mockCreditCards[index]);
               setCreditCardModal(false);
+              setSelectedPayment(mockPaymentOptions[2]);
             }}
           >
             <div className="relative w-[60px] h-[40px]">
@@ -363,16 +367,14 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                             layout="fixed"
                             alt="Asset icon"
                           />
-                          <p className="text-center ml-2">
-                            {selectedCrypto.name}
-                          </p>
+                          <p className="text-center">{selectedCrypto.name}</p>
                         </div>
                       </td>
                     )}
                     <td></td>
                     {buyingCrypto ? (
                       <td className="pb-10">
-                        <div className="flex justify-between p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color text-black my-0 mx-auto">
+                        <div className="flex justify-center p-2 w-32 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color text-black my-0 mx-auto">
                           <Image
                             src={selectedCrypto.icon}
                             width={20}
@@ -380,7 +382,9 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                             layout="fixed"
                             alt="Asset icon"
                           />
-                          <p className="text-center">{selectedCrypto.name}</p>
+                          <p className="text-center ml-2">
+                            {selectedCrypto.name}
+                          </p>
                         </div>
                       </td>
                     ) : (
@@ -397,7 +401,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                         id="payment"
                         type="number"
                         placeholder="0.00"
-                        classes="w-48 bg-gray-50"
+                        classes="md:w-48 w-26 bg-gray-50"
                         step=".01"
                         min="0"
                         onInput={(e) => {
@@ -428,7 +432,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                       <InputField
                         id="crypto"
                         placeholder="0.00"
-                        classes="w-48 bg-gray-200"
+                        classes="md:w-48 w-26 bg-gray-200"
                         disable={true}
                         value={receivedAmount}
                       />
@@ -519,19 +523,15 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                       "ssw33gghs2342a",
                       "04.01.2022. 16:35:43",
                     ].map((element, index) => {
-                      return (
-                        <td key={index} className="text-center">
-                          {element}
-                        </td>
-                      );
+                      return <td className="text-center">{element}</td>;
                     })}
                   </tr>
                 </tbody>
                 <Confetti
                   recycle={false}
                   numberOfPieces={200}
-                  width={widthh}
-                  height={heightt}
+                  width={width}
+                  height={height}
                 />
               </table>
             </div>
@@ -547,7 +547,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                 setActiveStep(1);
               }}
               type="filled"
-              classes="mt-6 mr-2"
+              classes="mt-8 mr-2"
             >
               Back
             </Button>{" "}
@@ -556,7 +556,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                 isTrading();
               }}
               type="filled"
-              classes="mt-6 ml-2 relative"
+              classes="mt-8 ml-2 relative"
             >
               <span className={`${trading ? "invisible" : ""}`}>Trade</span>{" "}
               {trading && (
@@ -570,13 +570,13 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             </Button>
           </>
         ) : activeStep == 1 ? (
-          <Button type="filled" classes="mt-6" onClick={() => setActiveStep(2)}>
+          <Button type="filled" classes="mt-8" onClick={() => setActiveStep(2)}>
             Next
           </Button>
         ) : (
           <Button
             type="filled"
-            classes="mt-6"
+            classes="mt-8"
             onClick={() => router.push("/account")}
           >
             Go to account
