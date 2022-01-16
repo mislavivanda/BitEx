@@ -13,7 +13,7 @@ const Contact = () => {
               x="0px"
               y="0px"
               viewBox="0 0 414.937 414.937"
-              style={{ width: 40, height: 40 }}
+              style={{ width: "2.5rem", height: "2.5rem" }}
             >
               <g>
                 <path
@@ -41,7 +41,7 @@ const Contact = () => {
               x="0px"
               y="0px"
               viewBox="0 0 400 400"
-              style={{ width: 40, height: 40 }}
+              style={{ width: "2.5rem", height: "2.5rem" }}
             >
               <g>
                 <polygon
@@ -72,7 +72,7 @@ const Contact = () => {
               x="0px"
               y="0px"
               viewBox="0 0 264.018 264.018"
-              style={{ width: 40, height: 40 }}
+              style={{ width: "2.5rem", height: "2.5rem" }}
             >
               <g>
                 <path
@@ -99,7 +99,7 @@ const Contact = () => {
               x="0px"
               y="0px"
               viewBox="0 0 466.008 466.008"
-              style={{ width: 40, height: 40 }}
+              style={{ width: "2.5rem", height: "2.5rem" }}
             >
               <g>
                 <path

@@ -85,6 +85,8 @@ const CryptoCoinInfo = ({ cryptoCoinData }) => {
 
 export default CryptoCoinInfo;
 
+/*In development mode next dev, however, getStaticProps and getStaticPaths run on every request.  */
+
 //SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
 export async function getStaticPaths() {
   //OVO SE POZIVA PRIJE getStaticProps
@@ -103,7 +105,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const cryptoCoinData = await getCryptoCoin(params.cryptoCoin); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+  const cryptoCoinData = await getCryptoCoin(params.cryptoCoin); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [cryptoCoin]
 
   return {
     props: {

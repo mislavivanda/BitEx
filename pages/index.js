@@ -41,7 +41,7 @@ const Home = ({ latestNews, mostTradedCryptos }) => {
           </Button>
         </div>
       </section>
-      <section className="w-full mt-10 py-5 text-center">
+      <section className="w-full mt-[3.75rem] py-5 text-center">
         <h1 className="text-5xl font-extrabold">Why use BitEx?</h1>
         <div className="mt-5 flex flex-col sm:flex-row sm:justify-evenly items-center">
           <div className="w-[100px] p-2 sm:p-0 flex flex-col justify-center items-center">

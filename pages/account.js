@@ -138,7 +138,7 @@ const Account = ({ accountData }) => {
               x="0px"
               y="0px"
               viewBox="0 0 459 459"
-              style={{ width: 60, height: 60 }}
+              style={{ width: "3.75rem", height: "3.75rem" }}
               className="mr-2"
             >
               <g fill="#642dfd">
@@ -192,7 +192,7 @@ const Account = ({ accountData }) => {
                     x="0px"
                     y="0px"
                     viewBox="0 0 16 16"
-                    style={{ width: 20, height: 20 }}
+                    style={{ width: "1.25rem", height: "1.25rem" }}
                   >
                     <g>
                       <path
@@ -298,7 +298,10 @@ const Account = ({ accountData }) => {
                                   <>
                                     <svg
                                       viewBox="0 0 12 14"
-                                      style={{ width: 12, height: 14 }}
+                                      style={{
+                                        width: "0.75rem",
+                                        height: "0.875rem",
+                                      }}
                                       className="ml-2"
                                     >
                                       {data.growthSign === 1 ? (
@@ -569,7 +572,7 @@ const Account = ({ accountData }) => {
                   color="#642dfd"
                   icon={FakeImage}
                   value={`$${analyticsPeriodData.feesAcrrued}`}
-                  description="FEES ACRUED"
+                  description="FEES ACRRUED"
                 />
               </div>
             </div>

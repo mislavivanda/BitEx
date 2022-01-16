@@ -1,11 +1,11 @@
 import { Button, InputField, Label, Spinner } from "../components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getSession, signIn } from "next-auth/react";
 
 const Login = () => {
-  const [runAnimation, setRunAnimation] = useState(false); //za pokretanje animacije svaki put kad se ude na login
+  const [runFormAnimation, setRunFormAnimation] = useState(false); //za pokretanje animacije svaki put kad se ude na login
   const [loginLoading, setLoginLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -22,12 +22,16 @@ const Login = () => {
     });
   }, []);
 
+  //componenet did mount ali nakon svakog rendera(ukljucjuci i prvi)
   useEffect(() => {
-    //trigeraj animaciju nakon sta se postavi setLOading na false
-    if (!loading) {
-      setRunAnimation(true);
+    //trigeraj animaciju nakon sta se postavi setLoading na false
+    if (!loading && !runFormAnimation) {
+      console.log("TRigger animation");
+      setTimeout(() => {
+        setRunFormAnimation(true);
+      }, 0); //hack for running animation
     }
-  }, [loading]);
+  });
 
   //napravi za github isto login funkcije koje ce pozivat signin('github') i signin('goggle'), proslijedi string u onlogin funkciju da znamo razlikovat tip
   const onCredentialsLogin = async (e) => {
@@ -60,20 +64,21 @@ const Login = () => {
   };
 
   if (!loading) {
-    console.log("Run animation");
-    console.log(runAnimation);
+    console.log("render");
+
     return (
       <>
-        <div className="fixed top-10 left-1.25 md:static ">
+        <div className="fixed top-10 left-1.25 md:static">
           <h1 className="inline text-5xl font-extrabold mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
             Login
           </h1>
         </div>
-        <section className="mt-10 flex flex-wrap items-center justify-evenly">
+        {/*dodan height da na mobitelima footer bude uvijek ispod login dijela */}
+        <section className="flex items-center justify-center h-[32rem]">
           <div
             className={`w-full max-w-xs shadow-xl fixed mx-auto top-[calc(100vh+7.45rem)] ${
-              runAnimation ? "-translate-y-[100vh]" : ""
-            } transition-transform duration-1000 ease-in-out`}
+              runFormAnimation ? "register-login-animate" : ""
+            }`}
           >
             <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
@@ -152,7 +157,10 @@ const Login = () => {
                   classes="mt-5 w-full flex items-center justify-center rounded-sm border-2 border-font-color-dark border-solid"
                 >
                   <span className="text-lg mr-2">Sign In With Google</span>
-                  <svg viewBox="-3 0 262 262" style={{ width: 30, height: 30 }}>
+                  <svg
+                    viewBox="-3 0 262 262"
+                    style={{ width: "1.875rem", height: "1.875rem" }}
+                  >
                     <path
                       d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
                       fill="#4285F4"

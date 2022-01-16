@@ -17,10 +17,10 @@ const BlogsSection = ({ type, blogsData }) => {
       {mockArticles.map((article, index) => (
         <article
           key={index}
-          className="shadow-xl rounded-md my-5 sm:my-10 sm:pr-10 w-full flex flex-col justify-center sm:flex-row sm:items-center sm:h-96 max-w-screen-xl hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-500 ease-in-out"
-          onClick={() => router.push(`/blog/${article.title}`)}
+          className="max-w-screen-lg shadow-xl rounded-md my-5 sm:my-10 sm:pr-10 w-full flex flex-col justify-center sm:flex-row sm:items-center sm:h-96 lg:h-[20rem] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-500 ease-in-out"
+          onClick={() => router.push(`/blog/bitcoin-price-plunge`)}
         >
-          <div className="relative h-60 sm:basis-2/4 lg:basis-1/3 flex-shrink-0 sm:h-full">
+          <div className="relative h-60 sm:basis-2/4 flex-shrink-0 sm:h-full">
             <Image
               src={ArticlePicture}
               layout="fill"
@@ -28,7 +28,7 @@ const BlogsSection = ({ type, blogsData }) => {
               alt="Article picture"
             />
           </div>
-          <div className="sm:pl-5 basis:0 sm:basis-0 flex-grow flex flex-col h-full overflow-hidden">
+          <div className="sm:pl-5 sm:basis-0 flex-grow flex flex-col h-full overflow-hidden">
             <h4 className="text-font-color-light font-bold">{article.date}</h4>
             <h2 className="py-1 sm:py-3 font-extrabold text-3xl">
               {article.title}
@@ -41,11 +41,7 @@ const BlogsSection = ({ type, blogsData }) => {
         </article>
       ))}
       <h3>Haven&apos;t had enough?</h3>
-      <Button
-        onClick={() => console.log("Load more clicked")}
-        type="filled"
-        classes="mt-5"
-      >
+      <Button onClick={() => router.push("/blog")} type="filled" classes="mt-5">
         Load more
       </Button>
     </section>

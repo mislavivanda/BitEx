@@ -15,8 +15,6 @@ const Dropdown = () => {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="#642dfd"
@@ -26,6 +24,7 @@ const Dropdown = () => {
           className={`transition-transform duration-500 ease-in-out ${
             isOpened ? "rotate-90" : ""
           }`}
+          style={{ width: "1.5rem", height: "1.5rem" }}
         >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
@@ -46,14 +45,13 @@ const Dropdown = () => {
             <svg
               className="mr-2"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#642dfd"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ width: "1.5rem", height: "1.5rem" }}
             >
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
@@ -70,14 +68,13 @@ const Dropdown = () => {
             <svg
               className="mr-2"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#642dfd"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ width: "1.5rem", height: "1.5rem" }}
             >
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>

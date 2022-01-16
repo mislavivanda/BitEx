@@ -4,6 +4,8 @@ import { Avatar } from "../../components";
 import { getBlogPost, getBlogSlugs } from "../../lib/dataSource";
 
 const Blog = ({ blogData }) => {
+  console.log("Blog data");
+  console.log(blogData);
   return (
     <>
       <section className="mt-16">
@@ -20,7 +22,7 @@ const Blog = ({ blogData }) => {
                 x="0px"
                 y="0px"
                 viewBox="0 0 58 58"
-                style={{ width: 30, height: 30 }}
+                style={{ width: "1.875rem", height: "1.875rem" }}
                 className="m-2 hover:cursor-pointer"
               >
                 <g>
@@ -43,7 +45,7 @@ const Blog = ({ blogData }) => {
                 x="0px"
                 y="0px"
                 viewBox="0 0 112.197 112.197"
-                style={{ width: 30, height: 30 }}
+                style={{ width: "1.875rem", height: "1.875rem" }}
                 className="m-2 hover:cursor-pointer"
               >
                 <g>
@@ -65,7 +67,7 @@ const Blog = ({ blogData }) => {
               </svg>
               <svg
                 viewBox="0 0 1024 1024"
-                style={{ width: 30, height: 30 }}
+                style={{ width: "1.875rem", height: "1.875rem" }}
                 className="m-2 hover:cursor-pointer"
               >
                 <circle cx="512" cy="512" r="512" fill="#5865f2" />
@@ -113,6 +115,13 @@ const Blog = ({ blogData }) => {
               Interdum velit sagittis, urna venenatis tristique posuere aliquam
             </p>
           </section>
+          <div className="flex items-center flex-wrap mt-4">
+            {["#bitcoin", "#plunge", "#bearmarket"].map((tag) => (
+              <div className="my-2 mr-6 bg-primary-color rounded-md p-2">
+                <span className="text-lg text-white font-extrabold">{tag}</span>
+              </div>
+            ))}
+          </div>
         </article>
       </section>
     </>
@@ -120,6 +129,8 @@ const Blog = ({ blogData }) => {
 };
 
 export default Blog;
+
+/*In development mode next dev, however, getStaticProps and getStaticPaths run on every request. */
 
 //SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
 export async function getStaticPaths() {
