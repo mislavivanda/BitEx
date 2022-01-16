@@ -117,7 +117,10 @@ const Blog = ({ blogData }) => {
           </section>
           <div className="flex items-center flex-wrap mt-4">
             {["#bitcoin", "#plunge", "#bearmarket"].map((tag) => (
-              <div className="my-2 mr-6 bg-primary-color rounded-md p-2">
+              <div
+                key={tag}
+                className="my-2 mr-6 bg-primary-color rounded-md p-2"
+              >
                 <span className="text-lg text-white font-extrabold">{tag}</span>
               </div>
             ))}
