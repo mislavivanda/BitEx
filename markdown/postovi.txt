@@ -1,0 +1,79 @@
+Post #1
+
+title:
+Binance Becomes Official Sponsor of the TotalEnergies Africa Cup of Nations (AFCON 2021)
+
+date:
+2022-01-11
+
+blog picture:
+https://public.bnbstatic.com/image/cms/blog/20220110/5f735257-0b63-40da-a234-295e011e6deb.png
+
+slug:
+binance-afcon
+
+tags:
+binance sponsor africa afcon 2021
+
+body:
+u blogPostOne.md
+
+author:
+John Doe
+
+short text describing post:
+Binance announces its partnership with the Confederation of African Football (CAF), as an official sponsor of the 2021 TotalEnergies Africa Cup of Nations (AFCON) tournaments...
+
+
+Post #2
+
+title:
+The Perfect Time For Passive Income With Crypto: When Should I Start?
+
+date:
+2022-01-13
+
+blog picture:
+https://public.bnbstatic.com/image/cms/blog/20220111/e836ce39-b3f1-465f-be7a-fca0e2d48bcf.png
+
+slug:
+passive-income
+
+tags:
+passive income crypto start
+
+body:
+u blogPostTwo.md
+
+author:
+John Doe
+
+short text describing post:
+While passive income with crypto is generally a good way to grow your wealth successfully, you should consider your financial position and lifestyle before starting. Figure out...
+
+Post #3
+
+title:
+S.S. Lazio x Immobile Best 6 NFT Drop and PowerStation with LAZIO Rewards
+
+date:
+2022-01-02
+
+blog picture:
+https://public.bnbstatic.com/image/cms/blog/20220111/e7d35ff3-0c90-4a28-9fe1-e9c4319c6d51.jpg
+
+slug:
+lazio-nft
+
+tags:
+lazio nft marketplace football 
+
+body:
+u blogPostThree.md
+
+author:
+John Doe
+
+short text describing post:
+Binance Fan Tokens introduce exciting utility features to the blockchain and sports to help fans celebrate club achievements and engage with teams. Fans can now enjoy...
+
