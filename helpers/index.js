@@ -18,7 +18,6 @@ export async function fetchGraphQLContentfulData(query, variables = {}) {
   )
     .then((response) => response.json())
     .then((response) => {
-      console.log(response.errors);
       if (response.errors) {
         throw new Error(response.errors[0].message);
       } else return response;

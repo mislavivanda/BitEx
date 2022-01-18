@@ -50,9 +50,6 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   useEffect(() => {
     setWidth(window.innerWidth - 50);
     setHeight(window.innerHeight - 50);
-    console.log(paymentOptions);
-    console.log(creditCards);
-    console.log(cryptoOffer);
   }, []);
 
   return (

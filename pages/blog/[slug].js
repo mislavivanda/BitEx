@@ -1,5 +1,4 @@
 import Image from "next/image";
-import mockArticleImage from "../../assets/mock_article.png";
 import { Avatar } from "../../components";
 import remarkUnwrapImages from "remark-unwrap-images";
 import { serialize } from "next-mdx-remote/serialize";

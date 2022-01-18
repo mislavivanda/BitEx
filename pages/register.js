@@ -5,7 +5,6 @@ import Link from "next/link";
 const Register = () => {
   const onRegister = (e) => {
     e.preventDefault();
-    console.log("register");
   };
 
   const [mounted, setMounted] = useState(false); //za pokretanje animacije svaki put kad se ude na login
@@ -16,20 +15,26 @@ const Register = () => {
 
   return (
     <>
-      <div className="fixed top-10 left-1.25 lg:static">
-        <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 text-left border-b-primary-color border-b-[5px] border-solid">
-          Register
-        </h1>
-        <h3 className="mt-8 text-xl mx-5 sm:mx-10 max-w-[280px] text-left">
-          Trade instantly with your favourite cryptocurrency. Register, deposit
-          and trade some crypto!
-        </h3>
+      <div className="relative">
+        <div
+          className={`absolute -left-[200vw] -top-16 lg:top-0 transition-transform duration-500 ease-in-out ${
+            mounted ? "translate-x-[200vw]" : ""
+          }`}
+        >
+          <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 text-left border-b-primary-color border-b-[5px] border-solid">
+            Register
+          </h1>
+          <h3 className="mt-8 text-xl mx-5 sm:mx-10 max-w-[280px] text-left">
+            Trade instantly with your favourite cryptocurrency. Register,
+            deposit and trade some crypto!
+          </h3>
+        </div>
       </div>
       {/*dodan height da na mobitelima footer bude uvijek ispod register dijela */}
-      <section className="mt-[7rem] flex items-center justify-center h-[25rem]">
+      <section className="relative mt-[7rem] flex items-center justify-center h-[25rem]">
         <div //isto kao kod logina samo uvecaj za velicinu h3 paragrafa -> fiksna, uvik 4 linije -> 4*lineheight = 7rem
-          className={`w-full max-w-xs shadow-xl fixed mx-auto top-[calc(100vh+14.75rem)] ${
-            mounted ? "register-login-animate" : ""
+          className={`w-full max-w-xs shadow-xl absolute mx-auto top-4 lg:top-0 -right-[calc(200vw-50%)] transition-transform duration-1000 ease-in-out ${
+            mounted ? "-translate-x-[calc(200vw-50%)]" : ""
           }`}
         >
           <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">

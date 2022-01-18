@@ -1,12 +1,9 @@
 import Image from "next/image";
 import { Button } from "../index";
-import { mockArticles } from "../../mockData";
-import ArticlePicture from "../../assets/mock_article.png";
 import { useRouter } from "next/router";
 
 const BlogsSection = ({ type, blogsData }) => {
   const router = useRouter();
-  console.log(blogsData);
   return (
     <section className="w-full mt-10 py-5 flex flex-col items-center">
       {type === "homepage" ? (

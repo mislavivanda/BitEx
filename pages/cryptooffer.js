@@ -1,4 +1,3 @@
-import { mockCryptoOffer } from "../mockData";
 import CryptoCard from "../modules/cryptoCard";
 import { Button } from "../components";
 import { getCryptoOffer } from "../lib/dataSource";

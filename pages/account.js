@@ -9,7 +9,6 @@ import {
 } from "../components";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import FakeImage from "../assets/cash_register.png";
 import { getUserAccountData } from "../lib/dataSource";
 
 const pageSize = 5;
@@ -39,7 +38,6 @@ const Account = ({ accountData }) => {
   };
 
   const handleTradeClick = (event, trade) => {
-    console.log(event.target);
     let arrowicon = event.target.firstChild;
     let parent = event.target.parentElement;
     arrowicon.classList.toggle("chevron-icon-active");
@@ -114,10 +112,6 @@ const Account = ({ accountData }) => {
   const currentPortfolioTableData = useMemo(() => {
     const firstPageIndex = (currentPortfolioPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    console.log("First and last index" + firstPageIndex + " " + lastPageIndex);
-    console.log(
-      accountData.cryptoPortfolio.slice(firstPageIndex, lastPageIndex)
-    );
     return accountData.cryptoPortfolio.slice(firstPageIndex, lastPageIndex);
   }, [currentPortfolioPage]);
 
@@ -572,8 +566,6 @@ const Account = ({ accountData }) => {
                   description="DEPOSIT"
                 />
                 <Widget
-                  color="#642dfd"
-                  icon={FakeImage}
                   value={`$${analyticsPeriodData.profit}`}
                   description="PROFIT"
                 />

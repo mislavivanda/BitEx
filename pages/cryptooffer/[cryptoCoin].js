@@ -3,8 +3,6 @@ import Image from "next/image";
 import { Button } from "../../components";
 import { getCryptoSlugs, getCryptoCoin } from "../../lib/dataSource";
 
-import BinanceCoin from "../../assets/binance_coin_logo.png";
-
 const CryptoCoinInfo = ({ cryptoCoinData }) => {
   const router = useRouter();
 
@@ -75,7 +73,6 @@ export default CryptoCoinInfo;
 //SAMO U FILEOVIMA KOJI SU OBLIKA [IME]
 export async function getStaticPaths() {
   //OVO SE POZIVA PRIJE getStaticProps
-  console.log("Inside static paths");
   //dobij slugove svih postova kroz helper poziv API-a
   const slugs = await getCryptoSlugs();
 

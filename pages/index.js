@@ -5,11 +5,6 @@ import BarChart from "../assets/bar_chart.png";
 import CreditCard from "../assets/credit_card.png";
 import { Button, BlogsSection } from "../components";
 import { useRouter } from "next/router";
-import BinanceCoin from "../assets/binance_coin_logo.png";
-import BTCCoin from "../assets/BTC_logo.png";
-import DogeCoin from "../assets/doge_logo.png";
-import ETHCoin from "../assets/ETH_logo.png";
-import SolanaCoin from "../assets/solana_logo.png";
 import { getBlogPosts, getCryptoOffer } from "../lib/dataSource";
 
 const Home = ({ latestNews, mostTradedCryptos }) => {

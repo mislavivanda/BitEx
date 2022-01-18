@@ -16,7 +16,6 @@ const Login = () => {
         //AKO IMA SESIJU REDIRECTAJ GA NA HOME PAGE
         router.replace("/");
       } else {
-        console.log("Set loading");
         setLoading(false);
       }
     });
@@ -26,10 +25,7 @@ const Login = () => {
   useEffect(() => {
     //trigeraj animaciju nakon sta se postavi setLoading na false
     if (!loading && !runFormAnimation) {
-      console.log("TRigger animation");
-      setTimeout(() => {
-        setRunFormAnimation(true);
-      }, 100); //hack for running animation
+      setRunFormAnimation(true);
     }
   });
 
@@ -64,13 +60,11 @@ const Login = () => {
   };
 
   if (!loading) {
-    console.log("render");
-
     return (
       <>
         <div className="relative">
           <h1
-            className={`absolute -left-[200vw] transition-transform duration-500 ease-in-out ${
+            className={`absolute -left-[200vw] -top-16 md:top-0 transition-transform duration-500 ease-in-out ${
               runFormAnimation ? "translate-x-[200vw]" : ""
             }  inline text-5xl font-extrabold mx-5 sm:mx-10 text-left border-b-primary-color border-b-[5px] border-solid`}
           >

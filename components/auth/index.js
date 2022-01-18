@@ -6,8 +6,7 @@ const AuthComponent = ({ children }) => {
   const { data: session, status } = useSession({
     required: true, //The default behavior is to redirect the user to the sign-in page, from where - after a successful login - they will be sent back to the page they started on.
   });
-  console.log("Stigla sesija");
-  console.log(session);
+
   if (session) {
     return children;
   }

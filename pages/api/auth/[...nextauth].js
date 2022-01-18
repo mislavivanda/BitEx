@@ -23,7 +23,6 @@ export default NextAuth({
       async authorize(credentials) {
         //credentials je objekt koji se proslijeduje kod poziva signIn('credentials',objekt) funkcije
         //poozivi contenful
-        console.log("Inside authorize");
         const userData = await fetch(
           //pozovi api koji provjerava email i password -> u produkciji TLS tako da se ne moze vidit username i pass od napadaca
           `${process.env.DOMAIN}/api/userauth`,
@@ -45,8 +44,6 @@ export default NextAuth({
         if (userData.data) {
           // Any object returned will be saved in `user` property of the JWT
           //ovo vracamo pozivu signin funkcije
-          console.log("Prosao login");
-          console.log(userData.data);
           return userData.data;
         }
         // If you return null or false then the credentials will be rejected
@@ -66,10 +63,6 @@ export default NextAuth({
       //  "token" is being send below to "session" callback...
       //  ...so we set "user" param of "token" to object from "authorize"...
       //  ...and return it...
-      console.log("Account");
-      console.log(account);
-      console.log("Profile");
-      console.log(profile);
       //u slucaju prijave preko credntials providera podaci su vec dohvaceni i authorize i ne treba zvat contentful API
       if (user && account) {
         //ovisno o provider drukciji je format imena i maila kojeg vraca, zakaci to na jwt ovisno o provideru
@@ -100,15 +93,11 @@ export default NextAuth({
     session: async ({ session, token }) => {
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
-      console.log("session user object");
-      console.log(token);
       session.userData = token.user;
       //session.user = user.user;
       return session;
     },
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("Inside sign in");
-      console.log(user);
       if (user) {
         return true;
       } else {
