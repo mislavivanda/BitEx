@@ -13,26 +13,19 @@ const CryptoCoinInfo = ({ cryptoCoinData }) => {
       <section className="mt-16">
         <article className="hidden sm:flex max-w-screen-lg mx-auto">
           <div className="mr-5">
-            <Image src={BinanceCoin} layout="fixed" height={100} width={100} />
+            <Image
+              src={cryptoCoinData.iconPictureUrl}
+              layout="fixed"
+              height={100}
+              width={100}
+            />
           </div>
           <div className="flex flex-col justify-center">
-            <h1 className="text-4xl text-font-color-dark font-bold">Binance</h1>
+            <h1 className="text-4xl text-font-color-dark font-bold">
+              {cryptoCoinData.name}
+            </h1>
             <p className="text-lg text-font-color">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-              bibendum vitae tellus dui elit. Sit tortor ipsum eu amet
-              scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-              bibendum vitae tellus dui elit. Sit tortor ipsum eu amet
-              scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-              bibendum vitae tellus dui elit. Sit tortor ipsum eu amet
-              scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-              bibendum vitae tellus dui elit. Sit tortor ipsum eu amet
-              scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-              bibendum vitae tellus dui elit. Sit tortor ipsum eu amet
-              scelerisque sodales. Sit tortor ipsum eu amet scelerisque sodales.
+              {cryptoCoinData.description}
             </p>
             <div className="text-center">
               <Button
@@ -47,26 +40,18 @@ const CryptoCoinInfo = ({ cryptoCoinData }) => {
         </article>
         <article className="sm:hidden flex flex-col items-center">
           <div>
-            <Image src={BinanceCoin} layout="fixed" height={100} width={100} />
+            <Image
+              src={cryptoCoinData.iconPictureUrl}
+              layout="fixed"
+              height={100}
+              width={100}
+            />
           </div>
           <h1 className="mt-4 text-4xl text-font-color-dark font-bold">
-            Binance
+            {cryptoCoinData.name}
           </h1>
           <p className="mt-4 text-lg text-font-color">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum
-            vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales.
-            Sit tortor ipsum eu amet scelerisque sodales. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Id bibendum vitae tellus dui
-            elit. Sit tortor ipsum eu amet scelerisque sodales. Sit tortor ipsum
-            eu amet scelerisque sodales. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Id bibendum vitae tellus dui elit. Sit tortor ipsum
-            eu amet scelerisque sodales. Sit tortor ipsum eu amet scelerisque
-            sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id
-            bibendum vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque
-            sodales. Sit tortor ipsum eu amet scelerisque sodales. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Id bibendum vitae
-            tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales. Sit
-            tortor ipsum eu amet scelerisque sodales.
+            {cryptoCoinData.description}
           </p>
           <div className="mt-4 mb-4 text-center">
             <Button

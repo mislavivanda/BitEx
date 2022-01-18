@@ -10,12 +10,13 @@ const CryptoOffer = ({ cryptoOfferData }) => {
         Crypto offer
       </h1>
       <section className="mt-20 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 content-around justify-evenly">
-        {mockCryptoOffer.map((crypto) => (
+        {cryptoOfferData.map((crypto) => (
           <CryptoCard
             key={crypto.name}
-            icon={crypto.icon}
+            icon={crypto.iconPictureUrl}
             title={crypto.name}
             description={crypto.description}
+            slug={crypto.slug}
           />
         ))}
       </section>

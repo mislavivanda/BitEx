@@ -4,6 +4,7 @@ import LineChart from "../assets/line_chart_up.png";
 import BarChart from "../assets/bar_chart.png";
 import CreditCard from "../assets/credit_card.png";
 import { Button, BlogsSection } from "../components";
+import { useRouter } from "next/router";
 import BinanceCoin from "../assets/binance_coin_logo.png";
 import BTCCoin from "../assets/BTC_logo.png";
 import DogeCoin from "../assets/doge_logo.png";
@@ -12,6 +13,7 @@ import SolanaCoin from "../assets/solana_logo.png";
 import { getBlogPosts, getCryptoOffer } from "../lib/dataSource";
 
 const Home = ({ latestNews, mostTradedCryptos }) => {
+  const router = useRouter();
   return (
     <>
       <section className="flex flex-wrap items-center justify-evenly w-full ">
@@ -79,22 +81,24 @@ const Home = ({ latestNews, mostTradedCryptos }) => {
       <section className="w-full mt-10 py-5 text-center">
         <h1 className="text-5xl font-extrabold">Most traded crypto</h1>
         <div className="flex mt-5 overflow-x-auto items-center sm:justify-evenly">
-          {[ETHCoin, SolanaCoin, BTCCoin, DogeCoin, BinanceCoin].map(
-            (element, index) => (
-              <div key={index} className="p-4 hover:cursor-pointer">
-                <Image
-                  src={element}
-                  width={90}
-                  height={90}
-                  layout="fixed"
-                  alt="Cryptocurrency logo"
-                />
-              </div>
-            )
-          )}
+          {mostTradedCryptos.map((crypto, index) => (
+            <div
+              key={index}
+              className="p-4 hover:cursor-pointer"
+              onClick={() => router.push(`/cryptooffer/${crypto.slug}`)}
+            >
+              <Image
+                src={crypto.iconPictureUrl}
+                width={90}
+                height={90}
+                layout="fixed"
+                alt="Cryptocurrency logo"
+              />
+            </div>
+          ))}
         </div>
       </section>
-      <BlogsSection type="homepage" />
+      <BlogsSection type="homepage" blogsData={latestNews} />
     </>
   );
 };
@@ -108,8 +112,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      latestNews,
-      mostTradedCrpytos,
+      latestNews: latestNews,
+      mostTradedCryptos: mostTradedCrpytos,
     },
   };
 }

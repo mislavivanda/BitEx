@@ -1,22 +1,44 @@
 import Image from "next/image";
 import mockArticleImage from "../../assets/mock_article.png";
 import { Avatar } from "../../components";
+import remarkUnwrapImages from "remark-unwrap-images";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
 import { getBlogPost, getBlogSlugs } from "../../lib/dataSource";
+import loader from "../../utils/remoteImageLoader";
+import { H2 } from "../../components/blogComponents/heading.js";
+import { P } from "../../components/blogComponents/text.js";
+import { Ul, Li } from "../../components/blogComponents/list.js";
+import { Quote } from "../../components/blogComponents/quote.js";
+import { ResponsiveImage } from "../../components/blogComponents/image.js";
+
+const components = {
+  h2: H2,
+  p: P,
+  ul: Ul,
+  li: Li,
+  blockquote: Quote,
+  img: ResponsiveImage,
+};
 
 const Blog = ({ blogData }) => {
-  console.log("Blog data");
-  console.log(blogData);
   return (
     <>
       <section className="mt-16">
         <article className="max-w-screen-lg mx-auto">
-          <h4 className="text-font-color-light font-bold">15. Nov 2021</h4>
+          <h4 className="text-font-color-light font-bold">{blogData.date}</h4>
           <h1 className="my-5 text-5xl text-font-color font-extrabold ">
-            Lorem ipsum naslov bloga u dva red ili cak tri lorem
+            {blogData.title}
           </h1>
           <hr className="w-[200px] h-[2px] bg-primary-color" />
           <div className="flex items-center flex-wrap">
-            <Avatar reverse={true} firstLetter="A" textContent="Ante Tomić" />
+            <Avatar
+              reverse={true}
+              firstLetter={blogData.author.name.charAt(0).toUpperCase()}
+              textContent={
+                "" + blogData.author.name + " " + blogData.author.surname
+              }
+            />
             <div className="flex items-center justify-end flex-grow">
               <svg
                 x="0px"
@@ -84,44 +106,25 @@ const Blog = ({ blogData }) => {
           <section id="article_body" className="mt-10 text-lg">
             <div className={`mx-auto w-full max-w-screen-lg`}>
               <Image
-                src={mockArticleImage}
+                loader={loader}
+                src={blogData.blogPictureUrl}
                 layout="responsive"
-                objectFit="cover"
+                width={4}
+                height={2}
                 alt="Article cover image"
               />
             </div>
-            <p className="my-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus at
-              sit id ac neque integer potenti elit, quam. Mi, duis leo viverra
-              proin metus odio. Aliquet pretium pharetra amet habitant arcu
-              sollicitudin odio. Egestas nunc sit nisl faucibus quam duis.
-              Interdum velit sagittis, urna venenatis tristique posuere aliquam
-            </p>
-            <p className="my-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus at
-              sit id ac neque integer potenti elit, quam. Mi, duis leo viverra
-              proin metus odio. Aliquet pretium pharetra amet habitant arcu
-              sollicitudin odio. Egestas nunc sit nisl faucibus quam duis.
-              Interdum velit sagittis, urna venenatis tristique posuere aliquam
-            </p>
-            <h2 className="text-3xl font-bold my-5">
-              “Lorem ipsum dolor sit amet, consectetur adipiscing elit.”
-            </h2>
-            <p className="my-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus at
-              sit id ac neque integer potenti elit, quam. Mi, duis leo viverra
-              proin metus odio. Aliquet pretium pharetra amet habitant arcu
-              sollicitudin odio. Egestas nunc sit nisl faucibus quam duis.
-              Interdum velit sagittis, urna venenatis tristique posuere aliquam
-            </p>
+            <MDXRemote {...blogData.mdxSource} components={components} lazy />
           </section>
-          <div className="flex items-center flex-wrap mt-4">
-            {["#bitcoin", "#plunge", "#bearmarket"].map((tag) => (
+          <div className="flex items-center flex-wrap mt-10">
+            {blogData.tags.map((tag) => (
               <div
                 key={tag}
                 className="my-2 mr-6 bg-primary-color rounded-md p-2"
               >
-                <span className="text-lg text-white font-extrabold">{tag}</span>
+                <span className="text-lg text-white font-extrabold">
+                  #{tag}
+                </span>
               </div>
             ))}
           </div>
@@ -152,6 +155,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const blogData = await getBlogPost(params.slug); //ime propertija se podudara s IMENOM KOJIM JE DEFINIRAN FILE SA [], A TO JE [slug]
+
+  blogData.mdxSource = await serialize(blogData.articleBody, {
+    mdxOptions: { remarkPlugins: [remarkUnwrapImages] },
+  });
 
   return {
     props: {
