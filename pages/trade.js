@@ -24,7 +24,8 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   const [paymentModal, setPaymentModal] = useState(false);
   const [cryptoModal, setCryptoModal] = useState(false);
   const [creditCardModal, setCreditCardModal] = useState(false);
-  const [currentCreditCard, setCurrentCreditCard] = useState(null); //gledamo jesmo li dobili parametar koji coin po defaultu odabrat ako smo stisli trade now
+  const [currentCreditCard, setCurrentCreditCard] = useState(null);
+  //gledamo jesmo li dobili parametar koji coin po defaultu odabrat ako smo stisli trade now
   const [selectedCrypto, setSelectedCrypto] = useState(
     router.query.linkedCrypto
       ? cryptoOffer.find((crypto) => crypto.slug === router.query.linkedCrypto)
@@ -445,7 +446,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                 <div className="pb-8 w-1/3">
                   {buyingCrypto ? (
                     <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
-                      <p className="text-center">${receivedAmount}</p>
+                      <p className="text-center">${insertAmount}</p>
                     </div>
                   ) : (
                     <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
@@ -484,7 +485,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
                         layout="fixed"
                         alt="Asset icon"
                       />
-                      <p className="mr-2">{insertAmount}</p>
+                      <p className="mr-2">{receivedAmount}</p>
                     </div>
                   ) : (
                     <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
@@ -551,6 +552,8 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             <Button
               onClick={() => {
                 setActiveStep(1);
+                setReceivedAmount("0.00");
+                setInsertAmount("0.00");
               }}
               type="filled"
               classes="mt-8 mr-2"
@@ -584,14 +587,28 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             <Button
               type="filled"
               classes="mt-8"
-              onClick={() => router.push("/account")}
+              onClick={() =>
+                router.push(
+                  {
+                    pathname: "/account",
+                    query: {
+                      activeTab: 1,
+                    },
+                  },
+                  "/account"
+                )
+              }
             >
-              Go to account
+              See trades
             </Button>
             <Button
               type="filled"
               classes="mt-8 ml-5"
-              onClick={() => setActiveStep(1)}
+              onClick={() => {
+                setActiveStep(1);
+                setReceivedAmount("0.00");
+                setInsertAmount("0.00");
+              }}
             >
               New trade
             </Button>

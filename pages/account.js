@@ -8,13 +8,18 @@ import {
   Label,
 } from "../components";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { getUserAccountData } from "../lib/dataSource";
 
 const pageSize = 5;
 
 const Account = ({ accountData }) => {
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+  const router = useRouter();
+
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(
+    router.query.activeTab ? 1 : 0
+  );
   const [analyticsPeriodData, setAnalyticsPeriodData] = useState({
     deposit: accountData.analytics.today.deposit,
     profit: accountData.analytics.today.profit,
