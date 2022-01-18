@@ -27,7 +27,17 @@ const CryptoCoinInfo = ({ cryptoCoinData }) => {
             </p>
             <div className="text-center">
               <Button
-                onClick={() => router.push("/trade")} //posalji state unutar pusha
+                onClick={() =>
+                  router.push(
+                    {
+                      pathname: "/trade",
+                      query: {
+                        linkedCrypto: cryptoCoinData.slug,
+                      },
+                    },
+                    "/trade"
+                  )
+                } //posalji state unutar pusha
                 type="filled"
                 classes="mt-5 text-xl"
               >

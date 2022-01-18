@@ -25,7 +25,9 @@ const Login = () => {
   useEffect(() => {
     //trigeraj animaciju nakon sta se postavi setLoading na false
     if (!loading && !runFormAnimation) {
-      setRunFormAnimation(true);
+      setTimeout(() => {
+        setRunFormAnimation(true);
+      }, 100);
     }
   });
 

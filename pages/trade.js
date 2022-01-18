@@ -7,6 +7,7 @@ import {
   InputField,
   Spinner,
 } from "../components";
+import { parseDate } from "../helpers";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Confetti from "react-confetti";
@@ -18,11 +19,17 @@ import {
 } from "../lib/dataSource";
 
 const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
+  const router = useRouter();
+
   const [paymentModal, setPaymentModal] = useState(false);
   const [cryptoModal, setCryptoModal] = useState(false);
   const [creditCardModal, setCreditCardModal] = useState(false);
-  const [currentCreditCard, setCurrentCreditCard] = useState(null);
-  const [selectedCrypto, setSelectedCrypto] = useState(cryptoOffer[0]);
+  const [currentCreditCard, setCurrentCreditCard] = useState(null); //gledamo jesmo li dobili parametar koji coin po defaultu odabrat ako smo stisli trade now
+  const [selectedCrypto, setSelectedCrypto] = useState(
+    router.query.linkedCrypto
+      ? cryptoOffer.find((crypto) => crypto.slug === router.query.linkedCrypto)
+      : cryptoOffer[0]
+  );
   const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
   const [activeStep, setActiveStep] = useState(1);
   const [searchedCryptos, setSearchedCryptos] = useState("");
@@ -34,8 +41,6 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   const [height, setHeight] = useState(null);
 
   const confettiRef = useRef(null);
-
-  const router = useRouter();
 
   const isTrading = () => {
     if (insertAmount !== "0.00" && receivedAmount !== "0.00") {
@@ -435,96 +440,106 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
       {activeStep == 4 ? (
         <section className="flex flex-wrap items-center justify-evenly">
           <div className="mt-10 w-full h-40 max-w-2xl" ref={confettiRef}>
-            <div className="flex justify-between content-center">
-              <table className="w-full border-separate">
-                <thead>
-                  <tr>
-                    <th className="pb-8 w-1/3">
-                      {buyingCrypto ? (
-                        <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
-                          <p className="text-center">${receivedAmount}</p>
-                        </div>
-                      ) : (
-                        <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
-                          <Image
-                            src={selectedCrypto.iconPictureUrl}
-                            width={25}
-                            height={22}
-                            layout="fixed"
-                            alt="Asset icon"
-                          />
-                          <p className="mr-2">{insertAmount}</p>
-                        </div>
-                      )}
-                    </th>
-                    <th className="pb-8 w-1/3">
-                      <svg
-                        style={{ width: "100%" }}
-                        height="20"
-                        viewBox="0 0 52 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M51.7071 8.70711C52.0976 8.31658 52.0976 7.68342 51.7071 7.29289L45.3431 0.928932C44.9526 0.538408 44.3195 0.538408 43.9289 0.928932C43.5384 1.31946 43.5384 1.95262 43.9289 2.34315L49.5858 8L43.9289 13.6569C43.5384 14.0474 43.5384 14.6805 43.9289 15.0711C44.3195 15.4616 44.9526 15.4616 45.3431 15.0711L51.7071 8.70711ZM0 9H51V7H0V9Z"
-                          fill="#D3D3D3"
-                        />
-                      </svg>
-                    </th>
-                    <th className="pb-8 w-1/3">
-                      {buyingCrypto ? (
-                        <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
-                          <Image
-                            src={selectedCrypto.iconPictureUrl}
-                            width={25}
-                            height={22}
-                            layout="fixed"
-                            alt="Asset icon"
-                          />
-                          <p className="mr-2">{insertAmount}</p>
-                        </div>
-                      ) : (
-                        <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
-                          <p className="text-center">${receivedAmount}</p>
-                        </div>
-                      )}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {["Transaction number", "Approval number", "Time"].map(
-                      (element, index) => {
+            <div className="w-full items-center">
+              <div className="w-full flex justify-evenly items-center">
+                <div className="pb-8 w-1/3">
+                  {buyingCrypto ? (
+                    <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
+                      <p className="text-center">${receivedAmount}</p>
+                    </div>
+                  ) : (
+                    <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color float-right">
+                      <Image
+                        src={selectedCrypto.iconPictureUrl}
+                        width={25}
+                        height={22}
+                        layout="fixed"
+                        alt="Asset icon"
+                      />
+                      <p className="mr-2">{insertAmount}</p>
+                    </div>
+                  )}
+                </div>
+                <div className="pb-8 w-1/3">
+                  <svg
+                    style={{ width: "100%" }}
+                    height="20"
+                    viewBox="0 0 52 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M51.7071 8.70711C52.0976 8.31658 52.0976 7.68342 51.7071 7.29289L45.3431 0.928932C44.9526 0.538408 44.3195 0.538408 43.9289 0.928932C43.5384 1.31946 43.5384 1.95262 43.9289 2.34315L49.5858 8L43.9289 13.6569C43.5384 14.0474 43.5384 14.6805 43.9289 15.0711C44.3195 15.4616 44.9526 15.4616 45.3431 15.0711L51.7071 8.70711ZM0 9H51V7H0V9Z"
+                      fill="#D3D3D3"
+                    />
+                  </svg>
+                </div>
+                <div className="pb-8 w-1/3">
+                  {buyingCrypto ? (
+                    <div className="flex justify-between p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
+                      <Image
+                        src={selectedCrypto.iconPictureUrl}
+                        width={25}
+                        height={22}
+                        layout="fixed"
+                        alt="Asset icon"
+                      />
+                      <p className="mr-2">{insertAmount}</p>
+                    </div>
+                  ) : (
+                    <div className="p-2 w-24 h-10 bg-violet-100 rounded-3xl border-2 border-primary-color">
+                      <p className="text-center">${receivedAmount}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="overflow-x-auto w-full">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      <th className="text-center align-bottom whitespace-nowrap p-3 border-b-[3px] border-solid border-b-hover-select">
+                        Transaction number
+                      </th>
+                      <th className="text-center align-bottom whitespace-nowrap p-3 border-b-[3px] border-solid border-b-hover-select">
+                        Approval number
+                      </th>
+                      <th className="text-center align-bottom whitespace-nowrap p-3 border-b-[3px] border-solid border-b-hover-select">
+                        Time
+                      </th>
+                      <th className="text-center align-bottom whitespace-nowrap p-3 border-b-[3px] border-solid border-b-hover-select">
+                        Fee
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {[
+                        "15fss148saxf",
+                        "ssw33gghs2342a",
+                        parseDate(new Date()),
+                        "$7.48",
+                      ].map((element, index) => {
                         return (
-                          <td key={index} className="text-center">
-                            <Label classes="text-base">{element}</Label>
+                          <td
+                            key={index}
+                            className={`text-center align-bottom whitespace-nowrap p-3 border-t-[1px] border-solid border-t-hover-select ${
+                              index === 3 ? "font-bold" : ""
+                            }`}
+                          >
+                            {element}
                           </td>
                         );
-                      }
-                    )}
-                  </tr>
-
-                  <tr>
-                    {[
-                      "15fss148saxf",
-                      "ssw33gghs2342a",
-                      "04.01.2022. 16:35:43",
-                    ].map((element, index) => {
-                      return (
-                        <td key={index} className="text-center">
-                          {element}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                </tbody>
-                <Confetti
-                  recycle={false}
-                  numberOfPieces={200}
-                  width={width}
-                  height={height}
-                />
-              </table>
+                      })}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <Confetti
+                recycle={false}
+                numberOfPieces={200}
+                width={width}
+                height={height}
+              />
             </div>
           </div>
         </section>
@@ -565,20 +580,29 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             Next
           </Button>
         ) : (
-          <Button
-            type="filled"
-            classes="mt-8"
-            onClick={() => router.push("/account")}
-          >
-            Go to account
-          </Button>
+          <>
+            <Button
+              type="filled"
+              classes="mt-8"
+              onClick={() => router.push("/account")}
+            >
+              Go to account
+            </Button>
+            <Button
+              type="filled"
+              classes="mt-8 ml-5"
+              onClick={() => setActiveStep(1)}
+            >
+              New trade
+            </Button>
+          </>
         )}
       </div>
     </>
   );
 };
 
-Trade.needsAuthentication = false;
+Trade.needsAuthentication = true;
 
 export default Trade;
 
