@@ -25,9 +25,10 @@ const Home = ({ latestNews, mostTradedCryptos }) => {
             Welcome to <span className="text-primary-color">BitEx</span>
           </h1>
           <h3 className="font-light mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id bibendum
-            vitae tellus dui elit. Sit tortor ipsum eu amet scelerisque sodales.
-            Sit tortor ipsum eu amet scelerisque sodales.
+            BitEx is a cryptocurrency marketplace, unlike any other you&apos;ve
+            seen before. Custom made to suit your trading needs, optimized for
+            fast usage and clear data presentation, it will change the way you
+            feel about crypto. You&apos;re welcome!
           </h3>
           <Button
             type="filled"

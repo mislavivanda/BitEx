@@ -14,7 +14,7 @@ const CryptoCard = ({ icon, title, description, slug }) => {
         <h2 className="text-3xl text-font-color-dark font-bold">{title}</h2>
         <div className="flex flex-col justify-between flex-grow">
           <p className="text-lg text-font-color">{description}</p>
-          <div className="text-center">
+          <div>
             <Button
               onClick={() => router.push(`/cryptooffer/${slug}`)}
               type="filled"

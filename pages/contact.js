@@ -32,7 +32,7 @@ const Contact = () => {
                 />
               </g>
             </svg>
-            <h4 className="text-lg text-font-color-dark font-extrabold">
+            <h4 className="text-lg text-font-color-dark font-extrabold mt-2">
               + 385 95 642 7377
             </h4>
           </div>
@@ -63,7 +63,7 @@ const Contact = () => {
               </g>
             </svg>
 
-            <h4 className="text-xl text-font-color-dark font-extrabold">
+            <h4 className="text-xl text-font-color-dark font-extrabold mt-2">
               office@bitex.com
             </h4>
           </div>
@@ -90,8 +90,8 @@ const Contact = () => {
                 />
               </g>
             </svg>
-            <h4 className="text-xl text-font-color-dark font-extrabold">
-              + 385 95 642 7377
+            <h4 className="text-xl text-font-color-dark font-extrabold mt-2">
+              Fausta Vrančića 1
             </h4>
           </div>
           <div className="flex flex-col p-2">
@@ -111,8 +111,8 @@ const Contact = () => {
                 />
               </g>
             </svg>
-            <h4 className="text-xl text-font-color-dark font-extrabold">
-              + 385 95 642 7377
+            <h4 className="text-xl text-font-color-dark font-extrabold mt-2">
+              24/7
             </h4>
           </div>
         </div>
