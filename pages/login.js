@@ -29,7 +29,7 @@ const Login = () => {
       console.log("TRigger animation");
       setTimeout(() => {
         setRunFormAnimation(true);
-      }, 0); //hack for running animation
+      }, 100); //hack for running animation
     }
   });
 
@@ -68,16 +68,20 @@ const Login = () => {
 
     return (
       <>
-        <div className="fixed top-10 left-1.25 md:static">
-          <h1 className="inline text-5xl font-extrabold mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
+        <div className="relative">
+          <h1
+            className={`absolute -left-[200vw] transition-transform duration-500 ease-in-out ${
+              runFormAnimation ? "translate-x-[200vw]" : ""
+            }  inline text-5xl font-extrabold mx-5 sm:mx-10 text-left border-b-primary-color border-b-[5px] border-solid`}
+          >
             Login
           </h1>
         </div>
         {/*dodan height da na mobitelima footer bude uvijek ispod login dijela */}
-        <section className="flex items-center justify-center h-[32rem]">
+        <section className="relative flex items-center justify-center h-[32rem]">
           <div
-            className={`w-full max-w-xs shadow-xl fixed mx-auto top-[calc(100vh+7.45rem)] ${
-              runFormAnimation ? "register-login-animate" : ""
+            className={`w-full max-w-xs shadow-xl absolute mx-auto -right-[calc(200vw-50%)] transition-transform duration-1000 ease-in-out ${
+              runFormAnimation ? "-translate-x-[calc(200vw-50%)]" : ""
             }`}
           >
             <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">

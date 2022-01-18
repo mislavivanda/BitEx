@@ -1,11 +1,5 @@
 import React, { useState, useMemo } from "react";
 import {
-  mockPortfolioData,
-  mockTradesData,
-  mockAnalyticsData,
-  mockCreditCards,
-} from "../mockData";
-import {
   Button,
   ChevronRight,
   Widget,
@@ -23,9 +17,9 @@ const pageSize = 5;
 const Account = ({ accountData }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
   const [analyticsPeriodData, setAnalyticsPeriodData] = useState({
-    deposit: mockAnalyticsData.today.deposit,
-    profit: mockAnalyticsData.today.profit,
-    feesAcrrued: mockAnalyticsData.today.feesAcrrued,
+    deposit: accountData.analytics.today.deposit,
+    profit: accountData.analytics.today.profit,
+    feesAcrrued: accountData.analytics.today.feesAcrrued,
   });
   const [analayticsPeriod, setAnalyticsPeriod] = useState("Today"); //today,last week, last month
   const [analyticsPeriodDropwdownOpen, setAnalyticsPeriodDropdownOpen] =
@@ -97,21 +91,21 @@ const Account = ({ accountData }) => {
       setAnalyticsPeriod(period);
       if (period === "Today") {
         setAnalyticsPeriodData({
-          deposit: mockAnalyticsData.today.deposit,
-          profit: mockAnalyticsData.today.profit,
-          feesAcrrued: mockAnalyticsData.today.feesAcrrued,
+          deposit: accountData.analytics.today.deposit,
+          profit: accountData.analytics.today.profit,
+          feesAcrrued: accountData.analytics.today.feesAcrrued,
         });
       } else if (period === "Last week") {
         setAnalyticsPeriodData({
-          deposit: mockAnalyticsData.lastWeek.deposit,
-          profit: mockAnalyticsData.lastWeek.profit,
-          feesAcrrued: mockAnalyticsData.lastWeek.feesAcrrued,
+          deposit: accountData.analytics.lastWeek.deposit,
+          profit: accountData.analytics.lastWeek.profit,
+          feesAcrrued: accountData.analytics.lastWeek.feesAcrrued,
         });
       } else {
         setAnalyticsPeriodData({
-          deposit: mockAnalyticsData.lastMonth.deposit,
-          profit: mockAnalyticsData.lastMonth.profit,
-          feesAcrrued: mockAnalyticsData.lastMonth.feesAcrrued,
+          deposit: accountData.analytics.lastMonth.deposit,
+          profit: accountData.analytics.lastMonth.profit,
+          feesAcrrued: accountData.analytics.lastMonth.feesAcrrued,
         });
       }
     }
@@ -120,13 +114,17 @@ const Account = ({ accountData }) => {
   const currentPortfolioTableData = useMemo(() => {
     const firstPageIndex = (currentPortfolioPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return mockPortfolioData.slice(firstPageIndex, lastPageIndex);
+    console.log("First and last index" + firstPageIndex + " " + lastPageIndex);
+    console.log(
+      accountData.cryptoPortfolio.slice(firstPageIndex, lastPageIndex)
+    );
+    return accountData.cryptoPortfolio.slice(firstPageIndex, lastPageIndex);
   }, [currentPortfolioPage]);
 
   const currentTradesTableData = useMemo(() => {
     const firstPageIndex = (currentTradesPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return mockTradesData.slice(firstPageIndex, lastPageIndex);
+    return accountData.trades.slice(firstPageIndex, lastPageIndex);
   }, [currentTradesPage]);
 
   return (
@@ -168,7 +166,7 @@ const Account = ({ accountData }) => {
               </h2>
             </div>
             <div className="inline-flex flex-col items-center">
-              {mockCreditCards.map((card, index) => (
+              {accountData.creditCards.map((card, index) => (
                 <div
                   key={index}
                   className="mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
@@ -178,11 +176,11 @@ const Account = ({ accountData }) => {
                     <Image
                       layout="fill"
                       alt="credit card provider logo"
-                      src={card.image}
+                      src={card.iconUrl}
                     />
                   </div>
                   <div className="ml-2 flex-grow text-center text-md font-extrabold text-font-color-dark">
-                    {card.number}
+                    {card.cardNumber}
                   </div>
                 </div>
               ))}
@@ -279,13 +277,13 @@ const Account = ({ accountData }) => {
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
                               <div className="flex items-center justify-center">
                                 <Image
-                                  src={data.assetIcon}
+                                  src={data.cryptoIconUrl}
                                   width={20}
                                   height={20}
                                   layout="fixed"
                                   alt="Asset icon"
                                 />
-                                <span className="ml-2">{data.asset}</span>
+                                <span className="ml-2">{data.cryptoName}</span>
                               </div>
                             </td>
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
@@ -354,7 +352,7 @@ const Account = ({ accountData }) => {
                                 )}
                               </div>
                             </td>
-                            <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid font-extrabold">{`$${data.holding}`}</td>
+                            <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid font-extrabold">{`$${data.holdings}`}</td>
                           </tr>
                           <tr></tr>
                         </React.Fragment>
@@ -394,11 +392,11 @@ const Account = ({ accountData }) => {
                     </>
                   ) : (
                     <>
-                      {currentTradesTableData.map((data, index) => (
+                      {currentTradesTableData.map((trade, index) => (
                         <React.Fragment key={`${currentTradesPage}-${index}`}>
                           <tr>
                             <td
-                              onClick={(e) => handleTradeClick(e, data)}
+                              onClick={(e) => handleTradeClick(e, trade)}
                               className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid hover:cursor-pointer hover:bg-hover-select transition-all duration-200 ease-in-out"
                             >
                               <ChevronRight classes="inline-block pointer-events-none transition-transform duration-500 ease-in-out" />
@@ -406,17 +404,25 @@ const Account = ({ accountData }) => {
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
                               <div className="flex items-center justify-center">
                                 <Image
-                                  src={data.asset1Icon}
-                                  width={20}
+                                  src={
+                                    trade.fromCryptoIconUrl
+                                      ? trade.fromCryptoIconUrl
+                                      : trade.fromCreditCardIconUrl
+                                  }
+                                  width={trade.fromCryptoIconUrl ? 20 : 30}
                                   height={20}
                                   layout="fixed"
                                   alt="Asset icon"
                                 />
-                                <span className="ml-2">{data.asset1}</span>
+                                <span className="ml-2">
+                                  {trade.fromCryptoName
+                                    ? trade.fromCryptoName
+                                    : trade.fromCreditCardNumber}
+                                </span>
                               </div>
                             </td>
                             <td className="p-3 text-center font-extrabold align-middle border-t-hover-select border-t-[1px] border-solid">
-                              {data.amount1}
+                              {trade.fromAmount}
                             </td>
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
                               <svg
@@ -435,17 +441,25 @@ const Account = ({ accountData }) => {
                             <td className="p-3 text-center align-middle border-t-hover-select border-t-[1px] border-solid">
                               <div className="flex items-center justify-center">
                                 <Image
-                                  src={data.asset2Icon}
-                                  width={20}
+                                  src={
+                                    trade.toCryptoIconUrl
+                                      ? trade.toCryptoIconUrl
+                                      : trade.toCreditCardIconUrl
+                                  }
+                                  width={trade.toCryptoIconUrl ? 20 : 30}
                                   height={20}
                                   layout="fixed"
                                   alt="Asset icon"
                                 />
-                                <span className="ml-2">{data.asset2}</span>
+                                <span className="ml-2">
+                                  {trade.toCryptoName
+                                    ? trade.toCryptoName
+                                    : trade.toCreditCardNumber}
+                                </span>
                               </div>
                             </td>
                             <td className="p-3 text-center font-extrabold align-middle border-t-hover-select border-t-[1px] border-solid">
-                              {data.amount2}
+                              {trade.toAmount}
                             </td>
                           </tr>
                           <tr></tr>
@@ -494,14 +508,14 @@ const Account = ({ accountData }) => {
               {selectedOptionIndex === 0 ? (
                 <Pagination
                   currentPage={currentPortfolioPage}
-                  totalCount={mockPortfolioData.length}
+                  totalCount={accountData.cryptoPortfolio.length}
                   pageSize={pageSize}
                   onPageChange={(page) => setCurrentPortfolioPage(page)}
                 />
               ) : (
                 <Pagination
                   currentPage={currentTradesPage}
-                  totalCount={mockTradesData.length}
+                  totalCount={accountData.trades.length}
                   pageSize={pageSize}
                   onPageChange={(page) => setCurrentTradesPage(page)}
                 />
@@ -554,23 +568,16 @@ const Account = ({ accountData }) => {
               {/* TODO: dodaj png ikone za depozit, profit i fee i odaberi boje widgeta */}
               <div className="mt-10 w-full max-w-screen-lg mx-auto flex flex-wrap items-center justify-evenly">
                 <Widget
-                  classes="my-2"
-                  color="#642dfd"
-                  icon={FakeImage}
                   value={`$${analyticsPeriodData.deposit}`}
                   description="DEPOSIT"
                 />
                 <Widget
-                  classes="my-2"
                   color="#642dfd"
                   icon={FakeImage}
                   value={`$${analyticsPeriodData.profit}`}
                   description="PROFIT"
                 />
                 <Widget
-                  classes="my-2"
-                  color="#642dfd"
-                  icon={FakeImage}
                   value={`$${analyticsPeriodData.feesAcrrued}`}
                   description="FEES ACRRUED"
                 />
@@ -586,7 +593,7 @@ const Account = ({ accountData }) => {
             </div>
             <Label classes="mb-1">Expiration date</Label>
             <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">
-              <h2>{creditCardPopupData.expirationDate}</h2>
+              <h2>{creditCardPopupData.expDate}</h2>
             </div>
             <Label classes="mb-1">Security code</Label>
             <div className="px-2 mb-1 text-lg border-2 border-font-color-dark border-solid rounded-md">

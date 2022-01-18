@@ -38,11 +38,13 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
   const router = useRouter();
 
   const isTrading = () => {
-    setTrading(true);
-    setTimeout(() => {
-      setTrading(false);
-      setActiveStep(4);
-    }, 2000);
+    if (insertAmount !== "0.00" && receivedAmount !== "0.00") {
+      setTrading(true);
+      setTimeout(() => {
+        setTrading(false);
+        setActiveStep(4);
+      }, 2000);
+    }
   };
 
   useEffect(() => {
