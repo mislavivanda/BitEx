@@ -32,7 +32,7 @@ const Home = ({ latestNews, mostTradedCryptos }) => {
           </h2>
           <Button
             type="filled"
-            onClick={() => console.log("get started clicked")}
+            onClick={() => router.push("/trade")}
             classes="mt-[0.5rem]"
           >
             Get started
