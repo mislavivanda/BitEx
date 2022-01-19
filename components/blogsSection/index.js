@@ -1,9 +1,21 @@
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "../index";
 import { useRouter } from "next/router";
 
+const blogPageSize = 5;
+
 const BlogsSection = ({ type, blogsData }) => {
   const router = useRouter();
+
+  const [currentBlogsPage, setCurrentBlogsPage] = useState(1); //kontrola paginacije blogova klikom na load more
+  const [showBlogs, setShowBlogs] = useState(blogsData.slice(0, blogPageSize));
+
+  const loadMoreBlogs = () => {
+    setShowBlogs(blogsData.slice(0, (currentBlogsPage + 1) * blogPageSize)); //slice ce vratit manje ako je manje
+    setCurrentBlogsPage(currentBlogsPage + 1);
+  };
+
   return (
     <section className="w-full mt-10 py-5 flex flex-col items-center">
       {type === "homepage" ? (
@@ -11,7 +23,7 @@ const BlogsSection = ({ type, blogsData }) => {
           Latest news:
         </h1>
       ) : null}
-      {blogsData.map((blog, index) => (
+      {showBlogs.map((blog, index) => (
         <article
           key={index}
           className="max-w-screen-lg shadow-xl rounded-md my-5 sm:my-10 sm:pr-10 w-full flex flex-col justify-center sm:flex-row sm:items-center sm:h-96 lg:h-[20rem] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-500 ease-in-out"
@@ -37,10 +49,33 @@ const BlogsSection = ({ type, blogsData }) => {
           </div>
         </article>
       ))}
-      <h3>Haven&apos;t had enough?</h3>
-      <Button onClick={() => router.push("/blog")} type="filled" classes="mt-5">
-        Load more
-      </Button>
+      {type === "homepage" ? (
+        <>
+          <h3>Haven&apos;t had enough?</h3>
+          <Button
+            onClick={() => router.push("/blog")}
+            type="filled"
+            classes="mt-5"
+          >
+            Load more
+          </Button>
+        </>
+      ) : (
+        <>
+          {currentBlogsPage * blogPageSize < blogsData.length ? (
+            <>
+              <h3>Haven&apos;t had enough?</h3>
+              <Button
+                onClick={() => loadMoreBlogs()}
+                type="filled"
+                classes="mt-5"
+              >
+                Load more
+              </Button>
+            </>
+          ) : null}
+        </>
+      )}
     </section>
   );
 };

@@ -24,7 +24,7 @@ const Home = ({ latestNews, mostTradedCryptos }) => {
           <h1 className=" text-5xl font-extrabold">
             Welcome to <span className="text-primary-color">BitEx</span>
           </h1>
-          <h3 className="font-light mt-2">
+          <h3 className="font-light mt-2 text-lg">
             BitEx is a cryptocurrency marketplace, unlike any other you&apos;ve
             seen before. Custom made to suit your trading needs, optimized for
             fast usage and clear data presentation, it will change the way you

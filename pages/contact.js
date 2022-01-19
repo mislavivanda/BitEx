@@ -33,7 +33,7 @@ const Contact = () => {
               </g>
             </svg>
             <h4 className="text-lg text-font-color-dark font-extrabold mt-2">
-              + 385 95 642 7377
+              (925) 691-4328
             </h4>
           </div>
           <div className="flex flex-col p-2">
@@ -91,7 +91,11 @@ const Contact = () => {
               </g>
             </svg>
             <h4 className="text-xl text-font-color-dark font-extrabold mt-2">
-              Fausta Vrančića 1
+              77 Massachusetts Ave
+              <br />
+              Cambridge, Massachusetts
+              <br />
+              02139
             </h4>
           </div>
           <div className="flex flex-col p-2">
@@ -112,7 +116,8 @@ const Contact = () => {
               </g>
             </svg>
             <h4 className="text-xl text-font-color-dark font-extrabold mt-2">
-              24/7
+              Mon - Sat: 8am - 8pm <br />
+              Sun: Closed
             </h4>
           </div>
         </div>

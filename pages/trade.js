@@ -110,7 +110,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
             }}
           />
         </div>
-        <div className="md:grid md:grid-cols-4 md:gap-6 mt-8">
+        <div className="mt-5 overflow-y-auto max-h-[50vh] grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {cryptoOffer
             .filter((element) =>
               element.name.toLowerCase().includes(searchedCryptos)
