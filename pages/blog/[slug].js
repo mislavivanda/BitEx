@@ -119,7 +119,7 @@ const Blog = ({ blogData }) => {
             {blogData.tags.map((tag) => (
               <div key={tag} className="my-2 mr-4 rounded-md p-2">
                 <span className="text-lg text-primary-color font-extrabold">
-                  #{tag}
+                  {tag}
                 </span>
               </div>
             ))}
