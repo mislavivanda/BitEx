@@ -12,12 +12,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description">
-          BitEx is a cryptocurrency marketplace which provides you with
+        <meta
+          name="description"
+          content="BitEx is a cryptocurrency marketplace which provides you with
           everything you need for crypto trading. Get latest news from crypto
           world and trade your favourite crypto assets to secure high profit.
-          Simple as that. Try it now, thank us later.
-        </meta>
+          Simple as that. Try it now, thank us later."
+        />
         <link rel="icon" href="/favicon.ico" key="icon" />
         <title>BitEx</title>
       </Head>
