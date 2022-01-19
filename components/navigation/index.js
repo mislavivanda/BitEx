@@ -11,24 +11,19 @@ const Navigation = ({ isOpen, setIsBurgerOpen, isUserLoggedIn }) => {
     <React.Fragment>
       {/*horizontal navbar, ukljucen na width>=sm */}
       <nav className="ml-6 hidden sm:flex align-center flex-nowrap font-bold text-lg list-none">
-        <ul>
-          {["Crypto offer", "Trade", "Blog"].map((item, index) => (
-            <Link
-              key={index}
-              href={`/${item.replace(/\s/g, "").toLowerCase()}`}
+        {["Crypto offer", "Trade", "Blog"].map((item, index) => (
+          <Link key={index} href={`/${item.replace(/\s/g, "").toLowerCase()}`}>
+            <a
+              className={`py-1 px-3 ${
+                `/${item.replace(/\s/g, "").toLowerCase()}` === router.route
+                  ? "text-primary-color"
+                  : "border-none"
+              } hover:cursor-pointer`}
             >
-              <li
-                className={`py-1 px-3 ${
-                  `/${item.replace(/\s/g, "").toLowerCase()}` === router.route
-                    ? "text-primary-color"
-                    : "border-none"
-                } hover:cursor-pointer`}
-              >
-                {item}
-              </li>
-            </Link>
-          ))}
-        </ul>
+              {item}
+            </a>
+          </Link>
+        ))}
       </nav>
       {/*burger menu -> ukljucen na <= sm + mora bit isopen true */}
       <section

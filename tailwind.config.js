@@ -40,7 +40,7 @@ module.exports = {
         "font-color": {
           dark: "#141414",
           DEFAULT: "#141414",
-          light: "#C0C0C0",
+          light: "#505050",
         },
         "button-classic": {
           DEFAULT: "#EFEFEF",
