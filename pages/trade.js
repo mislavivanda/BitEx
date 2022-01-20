@@ -63,7 +63,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
       {/* MODAL - PLACANJE*/}
       <Popup isOpen={paymentModal} closeModal={setPaymentModal}>
         <Label classes="text-base">Select payment type</Label>
-        <div className="md:grid md:grid-cols-4 md:gap-6 mt-6">
+        <div className="mt-5 overflow-y-auto max-h-[50vh] grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {paymentOptions.map((element, index) => {
             return (
               <div
@@ -147,29 +147,31 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
       {/* MODAL - KREDITNE */}
       <Popup isOpen={creditCardModal} closeModal={setCreditCardModal}>
         <Label classes="text-base">Select credit card</Label>
-        {creditCards.map((card, index) => (
-          <div
-            key={index}
-            className="mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
-            onClick={() => {
-              setPaymentModal(false);
-              setCurrentCreditCard(creditCards[index]);
-              setCreditCardModal(false);
-              setSelectedPayment(paymentOptions[1]);
-            }}
-          >
-            <div className="relative w-[60px] h-[40px]">
-              <Image
-                layout="fill"
-                alt="credit card provider logo"
-                src={card.iconUrl}
-              />
+        <div className="mt-5 overflow-y-auto max-h-[50vh]">
+          {creditCards.map((card, index) => (
+            <div
+              key={index}
+              className="mx-4 mb-2 pr-2 flex items-center border-primary-color border-[2px] border-solid rounded-[3px] hover:cursor-pointer hover:scale-105 sm:hover:scale-[1.02] transition-all duration-300 ease-in-out"
+              onClick={() => {
+                setPaymentModal(false);
+                setCurrentCreditCard(creditCards[index]);
+                setCreditCardModal(false);
+                setSelectedPayment(paymentOptions[1]);
+              }}
+            >
+              <div className="relative w-[60px] h-[40px]">
+                <Image
+                  layout="fill"
+                  alt="credit card provider logo"
+                  src={card.iconUrl}
+                />
+              </div>
+              <div className="ml-2 flex-grow text-center text-md font-extrabold text-font-color-dark">
+                {card.cardNumber}
+              </div>
             </div>
-            <div className="ml-2 flex-grow text-center text-md font-extrabold text-font-color-dark">
-              {card.cardNumber}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </Popup>
 
       <h1 className="inline text-5xl font-extrabold  mx-5 sm:mx-10 w-full max-w-screen-xl text-left border-b-primary-color border-b-[5px] border-solid">
