@@ -24,13 +24,11 @@ const About = () => {
           </span>
         </div>
         <h2 className="text-lg text-font-color p-5">
-          We are young software engineers turned crypto enthusiasts who have
-          made it their professional mission to easen your daily crypto trading!
-          Thank us later. We are young software engineers turned crypto
-          enthusiasts who have made it their professional mission to easen your
-          daily crypto trading! Thank us later. We are young software engineers
-          turned crypto enthusiasts who have made it their professional mission
-          to easen your daily crypto trading! Thank us later.
+          We are young software engineers turned crypto enthusiasts turned
+          cryptocurrency traders who have made it their professional mission to
+          easen your daily crypto trading! With seamless fiat transfers to your
+          very own customizable account, you&apos;ll get to our lightning speed
+          trade section. Thank us later.
         </h2>
       </section>
       <section className="mx-auto mt-10 w-full max-w-screen-md">
