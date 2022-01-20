@@ -98,7 +98,7 @@ const Trade = ({ paymentOptions, creditCards, cryptoOffer }) => {
 
       {/* MODAL - KRIPTOVALUTE */}
       <Popup isOpen={cryptoModal} closeModal={setCryptoModal}>
-        <Label classes="text-base">Select payment type</Label>
+        <Label classes="text-base">Select cryptocurrency</Label>
         <div className="pt-2 flex justify-center text-gray-600">
           <input
             className="w-[300px] border-2 border-gray-200 bg-white h-10 px-5 rounded-3xl text-sm focus:outline-none"
